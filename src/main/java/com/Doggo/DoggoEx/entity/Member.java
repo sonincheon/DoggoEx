@@ -15,7 +15,7 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_profile_seq")
     private Long id;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
     private List<PetProfile> petProfiles;
     @Column(unique = true , nullable = false)
     private String memberEmail;
@@ -33,6 +33,13 @@ public class Member {
     @Column(nullable = false)
     private String memberAddress;
     private LocalDateTime regDate;
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    private List<Sale> sales;
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    private List<Diary> diarys;
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    private List<Quest> quests;
+
 
     @PrePersist
     protected void prePersist() {
