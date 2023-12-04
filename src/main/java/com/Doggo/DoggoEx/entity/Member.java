@@ -3,6 +3,8 @@ package com.Doggo.DoggoEx.entity;
 
 import javax.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -27,16 +29,15 @@ public class Member {
     @Column(nullable = false)
     private String memberName;
     @Column(nullable = false)
-    private Date memberBirth;
+    private LocalDate memberBirth;
     @Column(nullable = false)
     private String memberAddress;
-    private Date memberRegdate;
+    private LocalDateTime regDate;
 
     @PrePersist
     protected void prePersist() {
-        memberRegdate = new Date();
+        regDate = LocalDateTime.now();
     }
-
 
     private String memberGrade;
 
