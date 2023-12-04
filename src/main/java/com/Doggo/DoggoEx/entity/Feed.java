@@ -16,7 +16,7 @@ public class Feed {
     @Column(name = "feed_img",nullable = false)
     private String feedImg;     // 사료사진
     @Column(name = "feed_price",nullable = false)
-    private String feedPrice;   // 사료가격
+    private Integer feedPrice;   // 사료가격
     @Column(name = "feed_info",nullable = false)
     private String feedInfo;    // 사료정보
     @Enumerated(EnumType.STRING)
