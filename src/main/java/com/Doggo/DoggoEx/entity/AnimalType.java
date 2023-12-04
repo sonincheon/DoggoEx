@@ -17,9 +17,8 @@ import javax.persistence.*;
 @Table(name = "animal_type_tb")
 public class AnimalType {
     @Id
-    @Column(name = "animalTypeId")
+    @Column(name = "animal_type_id")
     private Long id;
-
 
 
     @Enumerated(EnumType.STRING)

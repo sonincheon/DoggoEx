@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-@Table(name = "PET_PROFILE_TB")
+@Table(name = "pet_profile_tb")
 public class PetProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pet_profile_seq")

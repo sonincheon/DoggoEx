@@ -18,7 +18,7 @@ public class Dog {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "animalTypeId", referencedColumnName = "animalTypeId")
+    @JoinColumn(name = "animal_type_id", referencedColumnName = "animal_type_id")
     private AnimalType animalTypeId;
 
     @Column(unique = true)
