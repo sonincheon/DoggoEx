@@ -1,6 +1,9 @@
 package com.Doggo.DoggoEx.entity;
 
 
+import com.Doggo.DoggoEx.dto.MemberDto;
+import lombok.*;
+
 import javax.persistence.*;
 
 import java.time.LocalDate;
@@ -9,6 +12,11 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter @Setter
+@ToString
 @Table(name = "member_tb")
 public class Member {
     @Id
@@ -47,5 +55,21 @@ public class Member {
     }
 
     private String memberGrade;
+
+    public MemberDto toDto() {
+        return MemberDto.builder()
+                .id(this.getId())
+                .memberEmail(this.getMemberEmail())
+                .memberPassword(this.getMemberPassword())
+                .memberImage(this.getMemberImage())
+                .memberTel((this.getMemberTel()))
+                .memberGender(this.getMemberGender())
+                .memberName(this.getMemberName())
+                .memberBirth(this.getMemberBirth())
+                .memberAddress(this.getMemberAddress())
+                .regDate(this.getRegDate())
+                .memberGrade(this.getMemberGrade())
+                .build();
+    }
 
 }
