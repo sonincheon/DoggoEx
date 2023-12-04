@@ -16,14 +16,16 @@ public class Sale {
     @Column(name = "sales_price")
     private Integer salesPrice; //구매 가격
 
-    @Column(name = "sales_user",nullable = false)
-    private String salesUser; // 구매자
+    @ManyToOne(fetch = FetchType.LAZY) // 지연 전략
+    @JoinColumn(name = "member_id") // 외래키
+    private Member member; // 구매자
 
     @Column(name = "sales_addr")
     private String salesAddr;  //배송지
 
-    @Column(name = "sales_feednum")
-    private String salesFeednum; //사료번호
+    @ManyToOne(fetch = FetchType.LAZY) // 지연 전략
+    @JoinColumn(name = "feed_num") // 외래키
+    private Feed feed; // 사료
 
     @Enumerated(EnumType.STRING)
     @Column(name = "sales_type",nullable = false)

@@ -15,8 +15,9 @@ public class Quest {
     @Column(name = "quest_title",nullable = false)
     private String questTitle;
 
-    @Column(name = "quest_user",nullable = false)
-    private String questUser;
+    @ManyToOne(fetch = FetchType.LAZY) // 지연 전략
+    @JoinColumn(name = "member_id") // 외래키
+    private Member member; // 수행자
 
     @Column(name = "quest_Performance",nullable = false)
     private LocalDateTime questPerformance;

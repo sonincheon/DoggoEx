@@ -20,11 +20,12 @@ public class Diary {
     @Column(name = "diary_writedate",nullable = false)
     private LocalDateTime diaryWritedate; //작성일자
 
-    @Column(name = "diary_writer",nullable = false)
-    private String diaryWriter;   //작성자
+    @ManyToOne(fetch = FetchType.LAZY) // 지연 전략
+    @JoinColumn(name = "member_id") // 외래키
+    private Member member; // 작성자
 
     @Column(name = "diary_trophy")
-    private String diaryTrophy; // 트로피
+    private Integer countcom; // 트로피
 
     @PrePersist
     public void prePersist() {

@@ -24,4 +24,6 @@ public class Feed {
     private FeedType feedType;  // 사료타입 개/고양이
     @Column(name = "feed_subscribe",nullable = false)
     private String feedSubscribe;   // 판매수
+
+
 }
