@@ -19,10 +19,8 @@ public class Member {
     private String memberEmail;
     @Column(nullable = false)
     private String memberPassword;
-
     private String memberImage;
     @Column(nullable = false)
-
     private String memberTel;
     @Column(nullable = false)
     private String memberGender;
