@@ -21,8 +21,9 @@ public class Board {
     @Column(name = "board_img")
     private String boardImg;
 
-    @Column(name = "user_id")
-    private String userId;
+    @ManyToOne(fetch = FetchType.LAZY) // 지연 전략
+    @JoinColumn(name = "member_id") // 외래키
+    private Member member; // 구매자
 
     @Column(name = "board_reg_date")
     private Date regDate;
