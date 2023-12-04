@@ -1,11 +1,6 @@
-package com.Doggo.DoggoEx.dto.weather;
+package com.Doggo.DoggoEx.dto;
 
 
-import com.Doggo.DoggoEx.dto.View.Views;
-import com.Doggo.DoggoEx.entity.Cat;
-import com.Doggo.DoggoEx.entity.Weather;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
 
 import java.util.Map;

@@ -1,6 +1,6 @@
 package com.Doggo.DoggoEx.dto;
 
-import com.Doggo.DoggoEx.dto.View.Views;
+import com.Doggo.DoggoEx.utils.Views;
 import com.Doggo.DoggoEx.entity.AnimalType;
 import com.Doggo.DoggoEx.entity.Cat;
 import com.fasterxml.jackson.annotation.JsonInclude;

@@ -1,11 +1,10 @@
 package com.Doggo.DoggoEx.controller;
 
 import com.Doggo.DoggoEx.dto.CatDto;
-import com.Doggo.DoggoEx.dto.View.Views;
+import com.Doggo.DoggoEx.utils.Views;
 import com.Doggo.DoggoEx.service.CatService;
 import com.Doggo.DoggoEx.service.EngToKorService;
 import com.fasterxml.jackson.annotation.JsonView;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
