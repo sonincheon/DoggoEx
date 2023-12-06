@@ -6,6 +6,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +39,7 @@ public abstract class WeatherAbstract {
         return response.getBody();
     }
 
-    protected Map<String, Integer> getDateParameters() {
+    protected Map<String, Integer> middleDaysParam() {
         LocalDate now = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         int today = Integer.parseInt(now.format(formatter));
@@ -52,7 +54,7 @@ public abstract class WeatherAbstract {
         return dateParams;
     }
 
-    protected Map<String, String> createQueryParams(String regCode, Map<String, Integer> dateParams) {
+    protected Map<String, String> middleQueryParams(String regCode, Map<String, Integer> dateParams) {
         Map<String, String> queryParams = new HashMap<>();
         queryParams.put("reg", regCode);
         queryParams.put("tmef1", String.valueOf(dateParams.get("tomorrow")));
@@ -60,5 +62,43 @@ public abstract class WeatherAbstract {
         queryParams.put("help", "0");
 
         return queryParams;
+
+    }
+    protected Map<String, Integer> shortDaysParam() {
+        LocalDate today = LocalDate.now();
+
+        // 어제 날짜 계산하기
+        LocalDate yesterday = today.minusDays(1);
+
+        // 오후 12시 시간 설정하기
+        LocalTime noon = LocalTime.of(12, 0);
+
+        LocalDateTime todayNoon = LocalDateTime.of(today, noon);
+
+        // 어제 날짜와 오후 12시를 결합하여 LocalDateTime 객체 생성
+        LocalDateTime yesterdayNoon = LocalDateTime.of(yesterday, noon);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHH");
+
+        int intYesterdayNoon = Integer.parseInt(yesterdayNoon.format(formatter));
+
+        int intTodayNoon = Integer.parseInt(todayNoon.format(formatter));
+
+        Map<String, Integer> shortDateParams = new HashMap<>();
+        shortDateParams.put("today", intYesterdayNoon);
+        shortDateParams.put("2DaysAfter", intTodayNoon);
+
+        return shortDateParams;
+    }
+
+    protected Map<String, String> shortQueryParams(String regCode, Map<String, Integer> shortDateParams) {
+        Map<String, String> queryParams = new HashMap<>();
+        queryParams.put("reg", regCode);
+        queryParams.put("tmfc1", String.valueOf(shortDateParams.get("today")));
+        queryParams.put("tmfc2", String.valueOf(shortDateParams.get("2DaysAfter")));
+        queryParams.put("help", "0");
+
+        return queryParams;
+
     }
 }

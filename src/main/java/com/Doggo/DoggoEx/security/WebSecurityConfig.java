@@ -42,13 +42,13 @@ public class WebSecurityConfig implements WebMvcConfigurer {
                 .accessDeniedHandler(jwtAccessDeniedHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/auth/**", "/**").permitAll() //퍼스트맨 권한
+                .antMatchers("/auth/**", "/**").permitAll() //포스트맨 권한
                 .antMatchers("/**").permitAll() //스웨거 권한
                 .anyRequest().authenticated()
                 .and()
                 .apply(new JwtSecurityConfig(tokenProvider))
-                .and()
-                .cors(); // .and().cors() 추가 된 부분
+                .and();
+//                .cors(); // .and().cors() 추가 된 부분
 
         return http.build();
     }

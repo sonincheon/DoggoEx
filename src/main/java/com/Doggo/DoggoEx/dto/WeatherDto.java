@@ -1,9 +1,10 @@
 package com.Doggo.DoggoEx.dto;
 
 
+import com.Doggo.DoggoEx.entity.Weather;
 import lombok.*;
 
-import java.util.Map;
+
 
 @Getter @Setter
 @ToString
@@ -15,28 +16,31 @@ public class WeatherDto {
 
     private long id;
 
-    private Map<String, String> region;
+    private String region;
 
     private int weatherDate;
 
-    private int minTemperature;
+    private int morningTemperature;
 
-    private int maxTemperature;
+    private int morningRainPercent;
 
-    private int weatherCondition;
+    private String morningWeatherCondition;
 
-    private int rainPercent;
+    private int afternoonTemperature;
 
+    private int afternoonRainPercent;
 
-
-//    public Weather toEntity() {
-//        return Weather.builder()
-//                .region(this.getRegion())
-//                .weatherDate(this.getWeatherDate())
-//                .minTemperature((this.getMinTemperature()))
-//                .maxTemperature(this.getMaxTemperature())
-//                .weatherCondition(this.getWeatherCondition())
-//                .rainPercent(this.getRainPercent())
-//                .build();
-//    }
+    private String afternoonWeatherCondition;
+    public Weather toEntity() {
+        return Weather.builder()
+                .region(this.getRegion())
+                .weatherDate(this.getWeatherDate())
+                .morningTemperature(this.getMorningTemperature())
+                .morningRainPercent(this.getMorningRainPercent())
+                .morningWeatherCondition(this.getMorningWeatherCondition())
+                .afternoonTemperature(this.getAfternoonTemperature())
+                .afternoonRainPercent(this.getAfternoonRainPercent())
+                .afternoonWeatherCondition(this.getAfternoonWeatherCondition())
+                .build();
+    }
 }
