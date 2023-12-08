@@ -29,6 +29,4 @@ public class Board {
     private Date regDate;
     @Column(name = "answer")
     private String answer;
-
-
 }

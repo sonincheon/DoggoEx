@@ -21,7 +21,7 @@ public class swaggerConfiguration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.kh.jpatotalapp"))
+                .apis(RequestHandlerSelectors.basePackage("com.Doggo.DoggoEx"))
                 .paths(PathSelectors.any())
                 .build();
     }
