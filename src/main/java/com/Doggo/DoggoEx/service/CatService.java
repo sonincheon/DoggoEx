@@ -6,7 +6,7 @@ import com.Doggo.DoggoEx.entity.AnimalType;
 import com.Doggo.DoggoEx.entity.Cat;
 import com.Doggo.DoggoEx.repository.AnimalTypeRepository;
 import com.Doggo.DoggoEx.repository.CatRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
