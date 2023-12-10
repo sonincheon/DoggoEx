@@ -79,7 +79,7 @@ public class MiddleWeatherService extends WeatherAbstract {
             }
             middleTemp.put(city.name(), cityWeather);
         }
-
+        System.out.println("중기예보 온도 성공");
         return middleTemp;
     }
 
@@ -137,7 +137,7 @@ public class MiddleWeatherService extends WeatherAbstract {
             middleCondition.put(region.name(), regionCondition);
 
         }
-
+        System.out.println("중기예보 날씨 성공");
         return middleCondition;
     }
 
@@ -215,7 +215,7 @@ public class MiddleWeatherService extends WeatherAbstract {
             // 최종적으로 통합된 도시별 날씨 데이터를 completeMiddleWeather 맵에 추가합니다.
             completeMiddleWeather.put(city, new ArrayList<>(cityWeatherMap.values()));
         }
-
+        System.out.println("중기예보 취합 성공");
         return completeMiddleWeather;
     }
 

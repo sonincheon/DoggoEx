@@ -51,6 +51,7 @@ public class Weather {
 
     public WeatherDto toDto() {
         return WeatherDto.builder()
+                .id(this.getId())
                 .region(this.getRegion())
                 .weatherDate(this.getWeatherDate())
                 .morningTemperature(this.getMorningTemperature())

@@ -123,7 +123,6 @@ public class CatDto {
                 .maxWeight(this.getMaxWeight())
                 .minWeight(this.getMinWeight())
                 .maxWeight(this.getMaxWeight())
-
                 .build();
     }
 }

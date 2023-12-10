@@ -44,7 +44,7 @@ public class ShortWeatherService extends WeatherAbstract {
 //                System.out.println(regName+ " : " + regId);
             }
         }
-//        System.out.println(locationCode);
+        System.out.println("지역코드가져오기 성공");
         return locationCode;
     }
 
@@ -58,6 +58,8 @@ public class ShortWeatherService extends WeatherAbstract {
         LocalDate today = LocalDate.now();
         LocalDate twoDaysLater = today.plusDays(2);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+
+        System.out.println("단기예보 취합 시작");
 
         for (CityEnum city : CityEnum.values()) {
             String regCode = locationCode.get(city.name());
@@ -107,7 +109,7 @@ public class ShortWeatherService extends WeatherAbstract {
 
             completeShort.put(city.name(), cityWeather);
         }
-
+               System.out.println("단기예보 취합 성공");
         return completeShort;
     }
 
