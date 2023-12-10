@@ -2,6 +2,8 @@ package com.Doggo.DoggoEx.dto;
 
 
 import com.Doggo.DoggoEx.entity.Weather;
+import com.Doggo.DoggoEx.utils.Views;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
 
 
@@ -17,19 +19,19 @@ public class WeatherDto {
     private long id;
 
     private String region;
-
+    @JsonView(Views.Public.class)
     private int weatherDate;
-
+    @JsonView(Views.Public.class)
     private int morningTemperature;
-
+    @JsonView(Views.Public.class)
     private int morningRainPercent;
-
+    @JsonView(Views.Public.class)
     private String morningWeatherCondition;
-
+    @JsonView(Views.Public.class)
     private int afternoonTemperature;
-
+    @JsonView(Views.Public.class)
     private int afternoonRainPercent;
-
+    @JsonView(Views.Public.class)
     private String afternoonWeatherCondition;
     public Weather toEntity() {
         return Weather.builder()

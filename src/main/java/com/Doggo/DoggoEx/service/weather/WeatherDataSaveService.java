@@ -44,6 +44,7 @@ public class WeatherDataSaveService {
                     weatherDto.setAfternoonWeatherCondition(data.get(6));
 
                     Weather weather = weatherDto.toEntity();
+
                     weatherRepository.save(weather);
 
                     // 세션 flush 및 clear (JPA/Hibernate 사용 시)
@@ -52,7 +53,9 @@ public class WeatherDataSaveService {
                         entityManager.clear();
                     }
                 }
+
             }
+            System.out.println("중기예보 insert 성공");
         } catch (Exception e) {
             // 예외 처리 및 로그 출력
             System.err.println("Error saving weather data: " + e.getMessage());
