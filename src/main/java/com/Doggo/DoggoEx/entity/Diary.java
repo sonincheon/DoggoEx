@@ -1,9 +1,18 @@
 package com.Doggo.DoggoEx.entity;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "diary")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class Diary {
 
     @Id
@@ -24,12 +33,5 @@ public class Diary {
     @JoinColumn(name = "member_id") // 외래키
     private Member member; // 작성자
 
-    @Column(name = "diary_trophy")
-    private Integer countcom; // 트로피
-
-    @PrePersist
-    public void prePersist() {
-        diaryWritedate = LocalDateTime.now();
-    }
 
 }

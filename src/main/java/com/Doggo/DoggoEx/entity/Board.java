@@ -1,10 +1,19 @@
 package com.Doggo.DoggoEx.entity;
 import com.Doggo.DoggoEx.enums.BoardType;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "board_tb")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class Board {
     @Id
     @Column(name = "board_id")

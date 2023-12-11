@@ -1,11 +1,17 @@
 package com.Doggo.DoggoEx.entity;
 import com.Doggo.DoggoEx.enums.SalesType;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "sale")
+@Getter @Setter @ToString
+@NoArgsConstructor
 public class Sale {
 
     @Id

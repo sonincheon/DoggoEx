@@ -1,11 +1,20 @@
 package com.Doggo.DoggoEx.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Table(name = "pet_profile_tb")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class PetProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pet_profile_seq")

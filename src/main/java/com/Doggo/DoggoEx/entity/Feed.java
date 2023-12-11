@@ -1,11 +1,19 @@
 package com.Doggo.DoggoEx.entity;
 import com.Doggo.DoggoEx.enums.FeedType;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "feed")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class Feed {
     @Id
     @Column(name = "feed_num")
@@ -23,7 +31,7 @@ public class Feed {
     @Column(name = "feed_type",nullable = false)
     private FeedType feedType;  // 사료타입 개/고양이
     @Column(name = "feed_subscribe",nullable = false)
-    private String feedSubscribe;   // 판매수
+    private Integer feedSubscribe;   // 판매수
 
 
 }

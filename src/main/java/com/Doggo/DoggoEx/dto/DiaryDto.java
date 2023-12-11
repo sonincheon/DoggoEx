@@ -18,6 +18,5 @@ public class DiaryDto {
     private String diaryTitle; //제목
     private String diaryDetail; // 내용
     private LocalDateTime diaryWritedate; //작성일자
-    private Member memberId; // 작성자
-    private Integer countcom; // 트로피
+    private String memberId; // 작성자
 }

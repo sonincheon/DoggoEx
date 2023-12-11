@@ -14,7 +14,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class QuestDto {
     private Long QuestId;
-    private String questTitle;
+    private Boolean quest1;
+    private Boolean quest2;
+    private Boolean quest3;
+    private Boolean quest4;
+    private Boolean quest5;
     private Member memberId; // 수행자
     private LocalDateTime questPerformance;
 }

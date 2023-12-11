@@ -1,5 +1,6 @@
 package com.Doggo.DoggoEx.dto;
 
+import com.Doggo.DoggoEx.enums.FeedType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,6 @@ public class FeedDto {
     private String feedImg;     // 사료사진
     private Integer feedPrice;   // 사료가격
     private String feedInfo;    // 사료정보
-    private String feedType;  // 사료타입 개/고양
-    private String feedSubscribe;   // 판매수
+    private FeedType feedType;  // 사료타입 개/고양
+    private Integer feedSubscribe;   // 판매수
 }
