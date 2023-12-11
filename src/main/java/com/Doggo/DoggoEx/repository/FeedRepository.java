@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface FeedRepository extends JpaRepository<Feed, Long> {
-    Optional<Feed> findByName(String name);
+    Optional<Feed> findByFeedName(String name);
     List<Feed> findByFeedType(String feedType);
 }

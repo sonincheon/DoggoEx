@@ -38,8 +38,8 @@ public class Quest {
     private Boolean quest5;
 
     @ManyToOne(fetch = FetchType.LAZY) // 지연 전략
-    @JoinColumn(name = "member_id") // 외래키
-    private Member member; // 수행자
+    @JoinColumn(name = "pet_id") // 외래키
+    private PetProfile petProfile; // 수행 펫
 
     @Column(name = "quest_Performance",nullable = false)
     private LocalDateTime questPerformance; //수행날짜

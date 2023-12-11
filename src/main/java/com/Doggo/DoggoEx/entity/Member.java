@@ -39,8 +39,6 @@ public class Member {
     @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
     private List<Diary> diarys;
     @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
-    private List<Quest> quests;
-    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
     private List<PetProfile> petProfiles;
 
     @Enumerated(EnumType.STRING)

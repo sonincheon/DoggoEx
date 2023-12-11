@@ -26,8 +26,8 @@ public class Diary {
     @Column(name = "diary_detail",length = 1000)
     private String diaryDetail; // 내용
 
-    @Column(name = "diary_writedate",nullable = false)
-    private LocalDateTime diaryWritedate; //작성일자
+    @Column(name = "diary_write_date",nullable = false)
+    private LocalDateTime diaryWriteDate; //작성일자
 
     @ManyToOne(fetch = FetchType.LAZY) // 지연 전략
     @JoinColumn(name = "member_id") // 외래키

@@ -63,7 +63,6 @@ public class WeatherController {
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
-
     }
 
     // DB에서 AXIOS API 요청에 맞춰 각 지역별 일주일 치 날씨 정보 형태로 가공해서 return하는 컨트롤러

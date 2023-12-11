@@ -29,7 +29,7 @@ public class DiaryService {
             );
             diary.setDiaryTitle(diaryDto.getDiaryTitle());
             diary.setDiaryDetail(diaryDto.getDiaryDetail());
-            diary.setDiaryWritedate(diaryDto.getDiaryWritedate());
+            diary.setDiaryWriteDate(diaryDto.getDiaryWritedate());
             diary.setMember(member);
             diaryRepository.save(diary);
             return true;
@@ -68,7 +68,7 @@ public class DiaryService {
 
     //일기 출력 (날짜별, 이메일)
     public List<DiaryDto> modifyDiary(String Email,LocalDateTime day) {
-        List<Diary> diarys = diaryRepository.findByMemberMemberEmailAndDiaryWritedate(Email,day);
+        List<Diary> diarys = diaryRepository.findByMemberMemberEmailAndDiaryWriteDate(Email,day);
         List<DiaryDto> diaryDtos =new ArrayList<>();
         for(Diary diary : diarys){
             diaryDtos.add(convertEntityToDto(diary));
@@ -83,7 +83,7 @@ public class DiaryService {
         diaryDto.setDiaryId(diary.getId());
         diaryDto.setDiaryTitle(diary.getDiaryTitle());//제목
         diaryDto.setDiaryDetail(diary.getDiaryDetail());// 내용
-        diaryDto.setDiaryWritedate(diary.getDiaryWritedate()); //날짜
+        diaryDto.setDiaryWritedate(diary.getDiaryWriteDate()); //날짜
         diaryDto.setMemberId(diary.getMember().getMemberName()); // 작성자
         return diaryDto;
     }

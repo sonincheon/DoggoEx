@@ -30,7 +30,7 @@ public class SaleService {
             Member member = memberRepository.findByMemberEmail(saleDto.getMemberId()).orElseThrow(
                     () -> new RuntimeException("해당 회원이 존재하지 않습니다.")
             );
-            Feed feed = feedRepository.findByName(saleDto.getFeedName()).orElseThrow(
+            Feed feed = feedRepository.findByFeedName(saleDto.getFeedName()).orElseThrow(
                     () -> new RuntimeException("해당 사료가 존재하지 않습니다.")
             );
             sale.setSalesPrice(saleDto.getSalesPrice());
@@ -47,16 +47,6 @@ public class SaleService {
         }
     }
 
-    // 구매내역 삭제
-    public boolean delSale(Long id) {
-        try {
-            saleRepository.deleteById(id);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 
     // 정기배송날짜 수정
     public boolean saleAutoDelChange(Long id, SaleDto saleDto) {
@@ -125,7 +115,7 @@ public class SaleService {
     }
 
     // 전회원 구매내역 조회
-    public List<SaleDto> getSalesListByEmail() {
+    public List<SaleDto> getSalesListAll() {
         List<Sale> Sales = saleRepository.findAll();
         List<SaleDto> SaleDto = new ArrayList<>();
         for(Sale sale : Sales) {

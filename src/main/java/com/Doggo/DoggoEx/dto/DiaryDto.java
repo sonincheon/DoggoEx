@@ -2,10 +2,7 @@ package com.Doggo.DoggoEx.dto;
 
 
 import com.Doggo.DoggoEx.entity.Member;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +10,7 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class DiaryDto {
     private Long diaryId;
     private String diaryTitle; //제목

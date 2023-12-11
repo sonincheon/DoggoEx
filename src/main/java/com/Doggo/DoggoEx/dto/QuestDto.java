@@ -1,10 +1,7 @@
 package com.Doggo.DoggoEx.dto;
 
-import com.Doggo.DoggoEx.entity.Member;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import com.Doggo.DoggoEx.entity.PetProfile;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -12,13 +9,17 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class QuestDto {
     private Long QuestId;
-    private Boolean quest1;
-    private Boolean quest2;
-    private Boolean quest3;
-    private Boolean quest4;
-    private Boolean quest5;
-    private Member memberId; // 수행자
-    private LocalDateTime questPerformance;
+    private Boolean quest1; //양치
+    private Boolean quest2; //산책
+    private Boolean quest3; //교감
+    private Boolean quest4; //1분건강
+    private Boolean quest5; //빗질
+    private Long PetId; //펫 아이디
+    private String PetName; // 수행 펫 이름
+    private String PetImg; // 수행 펫 이미지
+    private Integer percent; // 1~5퀘스트 수행률
+    private LocalDateTime questPerformance; //날짜
 }

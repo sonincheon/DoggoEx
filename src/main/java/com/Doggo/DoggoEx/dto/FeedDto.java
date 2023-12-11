@@ -1,15 +1,13 @@
 package com.Doggo.DoggoEx.dto;
 
 import com.Doggo.DoggoEx.enums.FeedType;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class FeedDto {
     private Long feedId;
     private String feedName;    // 사료이름

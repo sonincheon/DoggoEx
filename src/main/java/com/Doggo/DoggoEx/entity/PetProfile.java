@@ -8,6 +8,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "pet_profile_tb")
@@ -18,6 +19,7 @@ import java.util.Date;
 public class PetProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pet_profile_seq")
+    @Column(name = "pet_id")
     private Long id;
     @ManyToOne
     @JoinColumn(name = "member_id")
@@ -25,15 +27,10 @@ public class PetProfile {
     @ManyToOne
     @JoinColumn(name = "animal_type_id")
     private AnimalType animalType; // 동물의 종류 (Enum 참조)
-
     private String petName; // 동물의 이름
-
     private String breed;
-
     private String imageLink;
-
     private LocalDate birthDate;
-
 
     private Date regDate; // 생성일
 
@@ -41,4 +38,7 @@ public class PetProfile {
     protected void prePersist() {
         regDate = new Date();
     }
+
+    @OneToMany(mappedBy = "petProfile",cascade = CascadeType.ALL)
+    private List<Quest> quests;
 }

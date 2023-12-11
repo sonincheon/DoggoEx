@@ -2,16 +2,14 @@ package com.Doggo.DoggoEx.dto;
 
 
 import com.Doggo.DoggoEx.enums.SalesType;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 
 import java.time.LocalDateTime;
 
 @Getter @Setter @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class SaleDto {
     private Long saleId; //구매 넘버
     private Integer salesPrice; //구매 가격

@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository
 public  interface DiaryRepository extends JpaRepository<Diary, Long> {
-    List<Diary> findByMemberMemberEmailAndDiaryWritedate (String Member, LocalDateTime day);
+    List<Diary> findByMemberMemberEmailAndDiaryWriteDate (String Member, LocalDateTime day);
 
 }
