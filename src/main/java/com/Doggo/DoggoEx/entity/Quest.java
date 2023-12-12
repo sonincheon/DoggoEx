@@ -5,10 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "quset")
@@ -42,6 +41,6 @@ public class Quest {
     private PetProfile petProfile; // 수행 펫
 
     @Column(name = "quest_Performance",nullable = false)
-    private LocalDateTime questPerformance; //수행날짜
+    private LocalDate questPerformance; //수행날짜
 
 }

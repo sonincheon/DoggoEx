@@ -41,7 +41,7 @@ public class QuestService {
         }
     }
     //퀘스트 변경
-    public boolean modiftyQuest(Long id,QuestDto questDto) {
+    public boolean modifyQuest(Long id,QuestDto questDto) {
         try {
             Quest quest =questRepository.findById(id).orElseThrow(
                     () -> new RuntimeException("해당 펫이 존재하지 않습니다.")
@@ -57,6 +57,7 @@ public class QuestService {
             return false;
         }
     }
+
     //강아지별 Quest 수행 상태  //펫아이디 , 날짜
     public QuestDto petQuestDetail(Long id, LocalDateTime day){
         Quest quest =questRepository.findByPetProfileIdAndQuestPerformance(id,day);
@@ -64,12 +65,6 @@ public class QuestService {
     }
 
     //강아지 Quset 리스트 %(날짜 / 이메일)
-
-
-
-
-
-
 
 
 

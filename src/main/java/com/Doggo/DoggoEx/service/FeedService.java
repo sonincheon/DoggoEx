@@ -4,6 +4,7 @@ package com.Doggo.DoggoEx.service;
 import com.Doggo.DoggoEx.dto.FeedDto;
 import com.Doggo.DoggoEx.entity.Board;
 import com.Doggo.DoggoEx.entity.Feed;
+import com.Doggo.DoggoEx.enums.FeedType;
 import com.Doggo.DoggoEx.repository.FeedRepository;
 import com.Doggo.DoggoEx.repository.SaleRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class FeedService {
             Feed feed =new Feed();
             feed.setFeedName(feedDto.getFeedName());
             feed.setFeedInfo(feedDto.getFeedInfo());
+            feed.setFeedPrice(feedDto.getFeedPrice());
             feed.setFeedType(feedDto.getFeedType());
             feed.setFeedImg(feedDto.getFeedImg());
             feed.setFeedSubscribe(0);
@@ -48,8 +50,8 @@ public class FeedService {
     }
 
     //개 ,고양이 사료별 조회
-    public List<FeedDto> getFeedList(String FeedType){
-        List<Feed> Feeds =feedRepository.findByFeedType(FeedType);
+    public List<FeedDto> getFeedList(FeedType feedType){
+        List<Feed> Feeds =feedRepository.findByFeedType(feedType);
         List<FeedDto> FeedDtos = new ArrayList<>();
         for(Feed feed: Feeds) {
             FeedDtos.add(convertEntityToDto(feed));
@@ -58,12 +60,13 @@ public class FeedService {
     }
 
     //사료 판매 완료후 판매수 증가
-    public boolean cntFeed(Long id, FeedDto feedDto) {
+    public boolean cntFeed(Long id) {
         try {
             Feed feed = feedRepository.findById(id).orElseThrow(
                     () -> new RuntimeException("해당 사료가 존재하지 않습니다.")
             );
-            feed.setFeedPrice(feed.getFeedSubscribe()+1);
+            feed.setFeedSubscribe(feed.getFeedSubscribe()+1);
+            feedRepository.save(feed);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,13 +78,12 @@ public class FeedService {
     private FeedDto convertEntityToDto(Feed feed) {
         FeedDto feedDto = new FeedDto();
         feedDto.setFeedId(feed.getId());
-        feedDto.setFeedInfo(feed.getFeedInfo()); // 사료정보
-        feedDto.setFeedImg(feed.getFeedImg());  // 사료사진
-        feedDto.setFeedName(feed.getFeedName());  // 사료이름
-        feedDto.setFeedPrice(feed.getFeedPrice()); // 사료가격
+        feedDto.setFeedInfo(feed.getFeedInfo());           // 사료정보
+        feedDto.setFeedImg(feed.getFeedImg());             // 사료사진
+        feedDto.setFeedName(feed.getFeedName());           // 사료이름
+        feedDto.setFeedPrice(feed.getFeedPrice());         // 사료가격
         feedDto.setFeedSubscribe(feed.getFeedSubscribe()); // 판매수
-        feedDto.setFeedType(feed.getFeedType()); // 사료타입 개/고양
+        feedDto.setFeedType(feed.getFeedType());           // 사료타입 개/고양
         return feedDto;
     }
-
 }

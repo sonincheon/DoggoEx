@@ -1,9 +1,8 @@
 package com.Doggo.DoggoEx.dto;
 
-import com.Doggo.DoggoEx.entity.PetProfile;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -21,5 +20,5 @@ public class QuestDto {
     private String PetName; // 수행 펫 이름
     private String PetImg; // 수행 펫 이미지
     private Integer percent; // 1~5퀘스트 수행률
-    private LocalDateTime questPerformance; //날짜
+    private LocalDate questPerformance; //날짜
 }

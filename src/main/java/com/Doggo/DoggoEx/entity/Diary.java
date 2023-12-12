@@ -5,7 +5,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "diary")
@@ -27,7 +28,7 @@ public class Diary {
     private String diaryDetail; // 내용
 
     @Column(name = "diary_write_date",nullable = false)
-    private LocalDateTime diaryWriteDate; //작성일자
+    private LocalDate diaryWriteDate; //작성일자
 
     @ManyToOne(fetch = FetchType.LAZY) // 지연 전략
     @JoinColumn(name = "member_id") // 외래키

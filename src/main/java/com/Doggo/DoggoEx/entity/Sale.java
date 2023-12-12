@@ -6,7 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "sale")
@@ -38,17 +38,17 @@ public class Sale {
     private SalesType salesType; //구매종류
 
     @Column(name = "sales_regdate")
-    private LocalDateTime salesRegDate; // 구매일자
+    private LocalDate salesRegDate; // 구매일자
 
     @Column(name = "sales_delivery")
-    private LocalDateTime salesDelivery; //배송일자
+    private LocalDate salesDelivery; //배송일자
 
     @Column(name = "sales_autodelivery")
     private Integer salesAutoDelivery; //정기 배송일자 10일이면>>10으로표시
 
     @PrePersist
     public void prePersist() {
-        salesRegDate = LocalDateTime.now();
+        salesRegDate = LocalDate.now();
     }
 
 }

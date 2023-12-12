@@ -21,6 +21,7 @@ public enum RegionEnum {
     private final String regionName;
 
     RegionEnum(String regionName) {
+
         this.regionName = regionName;
     }
 

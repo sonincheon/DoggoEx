@@ -33,5 +33,4 @@ public class Feed {
     @Column(name = "feed_subscribe",nullable = false)
     private Integer feedSubscribe;   // 판매수
 
-
 }

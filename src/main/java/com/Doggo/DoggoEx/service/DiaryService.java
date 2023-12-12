@@ -2,7 +2,7 @@ package com.Doggo.DoggoEx.service;
 
 import com.Doggo.DoggoEx.dto.DiaryDto;
 import com.Doggo.DoggoEx.entity.Diary;
-import com.Doggo.DoggoEx.entity.Feed;
+
 import com.Doggo.DoggoEx.entity.Member;
 import com.Doggo.DoggoEx.repository.DiaryRepository;
 import com.Doggo.DoggoEx.repository.MemberRepository;
@@ -10,9 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Slf4j
 @Service
@@ -29,7 +28,7 @@ public class DiaryService {
             );
             diary.setDiaryTitle(diaryDto.getDiaryTitle());
             diary.setDiaryDetail(diaryDto.getDiaryDetail());
-            diary.setDiaryWriteDate(diaryDto.getDiaryWritedate());
+            diary.setDiaryWriteDate(diaryDto.getDiaryWriteDate());
             diary.setMember(member);
             diaryRepository.save(diary);
             return true;
@@ -67,23 +66,17 @@ public class DiaryService {
     }
 
     //일기 출력 (날짜별, 이메일)
-    public List<DiaryDto> modifyDiary(String Email,LocalDateTime day) {
-        List<Diary> diarys = diaryRepository.findByMemberMemberEmailAndDiaryWriteDate(Email,day);
-        List<DiaryDto> diaryDtos =new ArrayList<>();
-        for(Diary diary : diarys){
-            diaryDtos.add(convertEntityToDto(diary));
-        }
-        return diaryDtos;
+    public DiaryDto diaryDetail(String Email, LocalDate day) {
+        Diary diary = diaryRepository.findByMemberMemberEmailAndDiaryWriteDate(Email,day);
+        return convertEntityToDto(diary);
     }
-
-
     // 게시글 엔티티를 DTO로 변환
     private DiaryDto convertEntityToDto(Diary diary) {
         DiaryDto diaryDto =new DiaryDto();
         diaryDto.setDiaryId(diary.getId());
         diaryDto.setDiaryTitle(diary.getDiaryTitle());//제목
         diaryDto.setDiaryDetail(diary.getDiaryDetail());// 내용
-        diaryDto.setDiaryWritedate(diary.getDiaryWriteDate()); //날짜
+        diaryDto.setDiaryWriteDate(diary.getDiaryWriteDate()); //날짜
         diaryDto.setMemberId(diary.getMember().getMemberName()); // 작성자
         return diaryDto;
     }
