@@ -25,7 +25,7 @@ public class WeatherDataSaveService {
     public void deleteAllWeatherData() {
         weatherRepository.deleteAll();
     }
-
+    
     @Transactional
     public void saveWeatherData(Map<String, List<List<String>>> weatherData) {
         try {

@@ -18,7 +18,7 @@ public class EngToKorService {
     }
 
     public CatDto catToKor(CatDto catDto) {
-        // DogDto에서 받고있는 영문 이름을 한국어로 변환
+        // CatDto에서 받고있는 영문 이름을 한국어로 변환
         String koreanName = catNameMapping.getOrDefault(catDto.getName(), catDto.getName());
         catDto.setName(koreanName);
         return catDto;
