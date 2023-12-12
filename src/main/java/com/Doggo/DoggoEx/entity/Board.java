@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -31,11 +32,14 @@ public class Board {
     private String boardImg;
 
     @ManyToOne(fetch = FetchType.LAZY) // 지연 전략
-    @JoinColumn(name = "member_id") // 외래키
+    @JoinColumn(name = "member_email") // 외래키
     private Member member; // 구매자
 
     @Column(name = "board_reg_date")
     private Date regDate;
+
     @Column(name = "answer")
     private String answer;
+
+
 }

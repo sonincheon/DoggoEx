@@ -17,7 +17,7 @@ public class BoardDto {
     private BoardType boardType;
     private String comment;
     private String boardImg;
-    private Member member;
+    private String memberEmail;
     private Date regDate;
     private String answer;
 
