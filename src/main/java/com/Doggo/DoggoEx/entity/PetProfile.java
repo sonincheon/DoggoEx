@@ -31,12 +31,11 @@ public class PetProfile {
     private String breed;
     private String imageLink;
     private LocalDate birthDate;
-
-    private Date regDate; // 생성일
+    private LocalDate regDate; // 생성일
 
     @PrePersist
     protected void prePersist() {
-        regDate = new Date();
+        regDate = LocalDate.now();
     }
 
     @OneToMany(mappedBy = "petProfile",cascade = CascadeType.ALL)
