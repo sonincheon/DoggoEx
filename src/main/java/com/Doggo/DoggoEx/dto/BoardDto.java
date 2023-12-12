@@ -5,6 +5,7 @@ import com.Doggo.DoggoEx.enums.BoardType;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -18,7 +19,8 @@ public class BoardDto {
     private String comment;
     private String boardImg;
     private String memberEmail;
-    private Date regDate;
+    private LocalDateTime regDate;
+
     private String answer;
 
 }

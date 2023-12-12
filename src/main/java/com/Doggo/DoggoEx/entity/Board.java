@@ -22,10 +22,10 @@ public class Board {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "board_type")
+    @Column(name = "board_type", nullable = false)
     private BoardType boardType;
 
-    @Column(name = "board_comment")
+    @Column(name = "board_comment", nullable = false)
     private String comment;
 
     @Column(name = "board_img")
@@ -35,8 +35,12 @@ public class Board {
     @JoinColumn(name = "member_email") // 외래키
     private Member member; // 구매자
 
-    @Column(name = "board_reg_date")
-    private Date regDate;
+    @Column(name = "board_reg_date", nullable = false)
+    private LocalDateTime regDate;
+    @PrePersist
+    protected void prePersist() {
+        regDate = LocalDateTime.now();
+    }
 
     @Column(name = "answer")
     private String answer;
