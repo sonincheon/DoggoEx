@@ -12,6 +12,7 @@ public class EngToKorService {
 
     public DogDto dogToKor(DogDto dogDto) {
         // DogDto에서 받고있는 영문 이름을 한국어로 변환
+        // 첫번째 매개변수dogDto.getName에서  dogNameMapping 에서 정의한 이름과 똒~같으면  static하기 지정한 디폴트값 (한글명) 반환
         String koreanName = dogNameMapping.getOrDefault(dogDto.getName(), dogDto.getName());
         dogDto.setName(koreanName);
         return dogDto;

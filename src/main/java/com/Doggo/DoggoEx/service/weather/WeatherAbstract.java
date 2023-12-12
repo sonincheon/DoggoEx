@@ -44,7 +44,7 @@ public abstract class WeatherAbstract {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         int today = Integer.parseInt(now.format(formatter));
         int tomorrow = today + 1;
-        int sevenDaysAfter = today + 7;
+        int sevenDaysAfter = today + 6;
 
         Map<String, Integer> dateParams = new HashMap<>();
         dateParams.put("today", today);
