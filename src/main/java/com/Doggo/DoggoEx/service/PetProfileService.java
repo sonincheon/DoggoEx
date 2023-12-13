@@ -108,6 +108,7 @@ public class PetProfileService {
         petProfileDto.setBreed(petProfile.getBreed());
         petProfileDto.setImageLink(petProfile.getImageLink());
         petProfileDto.setDetail(petProfile.getDetail());
+        petProfileDto.setGender(petProfile.getGender());
         petProfileDto.setBirthDate(petProfile.getBirthDate());
         petProfileDto.setRegDate(petProfile.getRegDate());
         return petProfileDto;
