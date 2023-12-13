@@ -51,6 +51,37 @@ public class PetProfileService {
         return petProfileDtos;
     }
 
+    // 반려동물 정보 수정
+    public boolean modifyPetProfile(Long id, PetProfileDto petProfileDto) {
+        try {
+            PetProfile petProfile = petProfileRepository.findById(id).orElseThrow(
+                    () -> new RuntimeException("해당 반려동물이 존재하지 않습니다.")
+            );
+            petProfile.setPetName(petProfileDto.getPetName());
+            petProfile.setBreed(petProfileDto.getBreed());
+            petProfile.setImageLink(petProfileDto.getImageLink());
+            petProfile.setDetail(petProfileDto.getDetail());
+            petProfile.setBirthDate(petProfileDto.getBirthDate());
+            petProfile.setAnimalType(petProfileDto.getAnimalType());
+            petProfileRepository.save(petProfile);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // 반려동물 삭제
+    public boolean deletePetProfile(Long id) {
+        try {
+            petProfileRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     // 반려동물 전체 조회
     public List<PetProfileDto> getPetProfileList() {
         List<PetProfile> petProfiles = petProfileRepository.findAll();

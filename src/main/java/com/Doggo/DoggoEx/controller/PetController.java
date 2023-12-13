@@ -36,4 +36,18 @@ public class PetController {
         List<PetProfileDto> list = petProfileService.getPetProfileByEmail(email);
         return ResponseEntity.ok(list);
     }
+
+    // 펫 수정
+    @PutMapping("/modify/{id}")
+    public ResponseEntity<Boolean> modifyPetProfile(@PathVariable Long id, @RequestBody PetProfileDto petProfileDto) {
+        boolean isTrue = petProfileService.modifyPetProfile(id, petProfileDto);
+        return ResponseEntity.ok(isTrue);
+    }
+
+    // 펫 삭제
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Boolean> petProfileDelete(@PathVariable Long id) {
+        boolean isTrue = petProfileService.deletePetProfile(id);
+        return ResponseEntity.ok(isTrue);
+    }
 }
