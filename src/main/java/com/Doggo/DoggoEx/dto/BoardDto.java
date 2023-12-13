@@ -14,13 +14,12 @@ import java.util.Date;
 @ToString
 
 public class BoardDto {
-    private Long id;
+    private Long BoardId;
     private BoardType boardType;
     private String comment;
     private String boardImg;
     private String memberEmail;
     private LocalDateTime regDate;
-
     private String answer;
 
 }

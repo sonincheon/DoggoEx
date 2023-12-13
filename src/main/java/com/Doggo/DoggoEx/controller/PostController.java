@@ -2,7 +2,6 @@ package com.Doggo.DoggoEx.controller;
 
 
 import com.Doggo.DoggoEx.dto.BoardDto;
-import com.Doggo.DoggoEx.entity.Member;
 import com.Doggo.DoggoEx.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,15 +22,34 @@ public class PostController {
         boolean isTrue = boardService.saveBoard(boardDto);
         return ResponseEntity.ok(isTrue);
     }
-    // 게시글 목록 조회
+    // 관리자 업데이트
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Boolean> userUp(@PathVariable Long id, @RequestBody BoardDto boardDto) {
+        boolean isTrue = boardService.updateUserBoard(id, boardDto);
+        return ResponseEntity.ok(isTrue);
+    }
+
+    // 문의 수정
+    @PutMapping("/modify/{id}")
+    public ResponseEntity<Boolean> boardUp(@PathVariable Long id, @RequestBody BoardDto boardDto) {
+        boolean isTrue = boardService.updateBoard(id, boardDto);
+        return ResponseEntity.ok(isTrue);
+    }
+    // 문의 삭제
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Boolean> boardDel(@PathVariable Long id, @RequestBody BoardDto boardDto) {
+        boolean isTrue = boardService.deleteBoard(id);
+        return ResponseEntity.ok(isTrue);
+    }
+    // 문의 목록 조회
     @GetMapping("/list")
     public ResponseEntity<List<BoardDto>> oneBoard() {
         List<BoardDto> list = boardService.getOneBoard();
         return ResponseEntity.ok(list);
     }
     // 회원별 문의글 조회
-    @GetMapping("/list/{email}")
-    public ResponseEntity<List<BoardDto>> oneBoardByMemberEmail(@RequestParam String memberEmail){
+    @GetMapping("/list/{memberEmail}")
+    public ResponseEntity<List<BoardDto>> oneBoardByMemberEmail(@PathVariable String memberEmail){
         List<BoardDto> list = boardService.getOneBoardByMemberEmail(memberEmail);
         return ResponseEntity.ok(list);
     }
