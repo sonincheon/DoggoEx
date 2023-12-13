@@ -33,6 +33,7 @@ public class PetProfile {
 
     private String petName; // 동물의 이름
     private String breed;
+    private String gender;
     private String imageLink;
     private String detail;
     private LocalDate birthDate;

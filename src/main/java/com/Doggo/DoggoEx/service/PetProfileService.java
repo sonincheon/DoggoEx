@@ -33,6 +33,7 @@ public class PetProfileService {
             petProfile.setImageLink(petProfileDto.getImageLink());
             petProfile.setDetail(petProfileDto.getDetail());
             petProfile.setBirthDate(petProfileDto.getBirthDate());
+            petProfile.setGender(petProfileDto.getGender());
             petProfileRepository.save(petProfile);
             return true;
         } catch (Exception e) {
@@ -57,12 +58,18 @@ public class PetProfileService {
             PetProfile petProfile = petProfileRepository.findById(id).orElseThrow(
                     () -> new RuntimeException("해당 반려동물이 존재하지 않습니다.")
             );
-            petProfile.setPetName(petProfileDto.getPetName());
-            petProfile.setBreed(petProfileDto.getBreed());
-            petProfile.setImageLink(petProfileDto.getImageLink());
-            petProfile.setDetail(petProfileDto.getDetail());
-            petProfile.setBirthDate(petProfileDto.getBirthDate());
-            petProfile.setAnimalType(petProfileDto.getAnimalType());
+            if(petProfileDto.getPetName()!=null){
+                petProfile.setPetName(petProfileDto.getPetName());}
+            if(petProfileDto.getBreed()!=null){
+                petProfile.setBreed(petProfileDto.getBreed());}
+            if(petProfileDto.getImageLink()!=null){
+                petProfile.setImageLink(petProfileDto.getImageLink());}
+            if(petProfileDto.getDetail()!=null){
+                petProfile.setDetail(petProfileDto.getDetail());}
+            if(petProfileDto.getBirthDate()!=null){
+                petProfile.setBirthDate(petProfileDto.getBirthDate());}
+            if(petProfileDto.getGender()!=null){
+                petProfile.setGender(petProfileDto.getGender());}
             petProfileRepository.save(petProfile);
             return true;
         } catch (Exception e) {

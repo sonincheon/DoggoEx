@@ -20,6 +20,7 @@ public class PetProfileDto {
     private AnimalType animalType; // 동물의 종류 (Enum 참조)
     private String petName; // 동물의 이름
     private String breed;
+    private String gender;
     private String imageLink;
     private String detail;
     private LocalDate birthDate;
