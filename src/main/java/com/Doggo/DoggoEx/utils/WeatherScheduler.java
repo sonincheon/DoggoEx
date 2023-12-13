@@ -30,7 +30,7 @@ public class WeatherScheduler {
         this.weatherDataSaveService = weatherDataSaveService;
     }
 
-    @Scheduled(cron = "0 0 6 * * ?") // 매일 아침 6시에 실행
+    @Scheduled(cron = "0 0 12 * * ?") // 매일 아침 6시에 실행
     public void executeWeatherTasks() {
         try {
             // 데이터 insert하기전 날씨테이블의 모든 레코드 삭제 , 이는 최신화된 정보만 보관을 위함
