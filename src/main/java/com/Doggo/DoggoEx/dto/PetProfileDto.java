@@ -1,14 +1,19 @@
 package com.Doggo.DoggoEx.dto;
 
 import com.Doggo.DoggoEx.entity.AnimalType;
+import com.Doggo.DoggoEx.entity.Member;
 import lombok.*;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+
 public class PetProfileDto {
     private Long id;
     private String memberId;
@@ -16,7 +21,8 @@ public class PetProfileDto {
     private String petName; // 동물의 이름
     private String breed;
     private String imageLink;
+    private String detail;
     private LocalDate birthDate;
-    private LocalDate regDate; // 생성일
+    private LocalDateTime regDate; // 생성일
 }
 
