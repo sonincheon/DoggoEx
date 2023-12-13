@@ -20,4 +20,7 @@ public class SaleDto {
     private LocalDate salesRegDate; // 구매일자
     private LocalDate salesDelivery; //배송일자
     private Integer salesAutoDelivery; //정기 배송일자 10일이면>>10으로표시
+
+    private String orderStatus;     // 출고상태
+    private Integer invoice;         // 송장번호
 }

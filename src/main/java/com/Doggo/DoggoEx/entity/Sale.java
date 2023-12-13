@@ -51,4 +51,10 @@ public class Sale {
         salesRegDate = LocalDate.now();
     }
 
+    @Column(name = "order_status")
+    private String orderStatus;
+
+    @Column(name = "invoice_Num")
+    private Integer invoice;
+
 }

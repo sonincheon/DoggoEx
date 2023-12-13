@@ -106,7 +106,8 @@ public class BoardService {
     }
 
     // 엔티티 변환
-    private BoardDto convertEntityToDto(Board board) {
+    // adminBoardService에서 쓰기 위해 private → public으로 수정함
+    public BoardDto convertEntityToDto(Board board) {
         BoardDto boardDto = new BoardDto();
         boardDto.setBoardId(board.getId());
         boardDto.setBoardType(board.getBoardType());
