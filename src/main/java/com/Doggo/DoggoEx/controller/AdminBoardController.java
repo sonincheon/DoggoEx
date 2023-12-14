@@ -16,14 +16,14 @@ public class AdminBoardController {
     // 문의 전체 조회 → PostController꺼 쓰면 될듯
 
     // 문의 1:1 상세 조회
-    @GetMapping("/qna/{id}")
+    @GetMapping("/detail/{id}")
     public ResponseEntity<BoardDto> boardDetail(@PathVariable Long id) {
         BoardDto boardDto = adminBoardService.getBoardDetail(id);
         return ResponseEntity.ok(boardDto);
     }
 
     // 문의 답변 업로드
-    @PutMapping("/qna/{id}")
+    @PutMapping("/answer/{id}")
     public ResponseEntity<Boolean> answer(@PathVariable Long id, @RequestBody BoardDto boardDto) {
         boolean isTrue = adminBoardService.QnaAnswer(id, boardDto.getAnswer());
         return ResponseEntity.ok(isTrue);
