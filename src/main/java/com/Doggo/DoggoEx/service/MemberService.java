@@ -10,6 +10,7 @@ import com.Doggo.DoggoEx.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,16 +40,29 @@ public class MemberService {
                     () -> new RuntimeException("해당 회원이 존재하지 않습니다.")
             );
             if(memberDto.getMemberImage()!=null){
-            member.setMemberImage(memberDto.getMemberImage());}
+                member.setMemberImage(memberDto.getMemberImage());}
             if(memberDto.getMemberAddress()!=null){
                 member.setMemberAddress(memberDto.getMemberAddress());}
             if(memberDto.getMemberGender()!=null){
                 member.setMemberGender(memberDto.getMemberGender());}
             if(memberDto.getMemberTel()!=null){
                 member.setMemberTel(memberDto.getMemberTel());}
+            if(memberDto.getMemberBirth()!=null){
+                member.setMemberBirth(memberDto.getMemberBirth());}
             if(memberDto.getMemberGrade()!=null){
                 member.setMemberGrade(memberDto.getMemberGrade());}
             memberRepository.save(member);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Transactional
+    public boolean deleteMember(String email) {
+        try {
+            memberRepository.deleteByMemberEmail(email);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

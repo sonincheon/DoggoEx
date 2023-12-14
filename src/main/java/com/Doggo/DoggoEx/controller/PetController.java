@@ -31,6 +31,7 @@ public class PetController {
         return ResponseEntity.ok(isTrue);
     }
 
+    // 내 펫 조회
     @GetMapping("/list/email")
     public ResponseEntity<List<PetProfileDto>> petProfileByEmail(@RequestParam String email) {
         List<PetProfileDto> list = petProfileService.getPetProfileByEmail(email);

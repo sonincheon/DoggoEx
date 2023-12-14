@@ -26,6 +26,7 @@ public class Member {
     private String  memberEmail;
     @Column(nullable = false)
     private String  memberPassword;
+    @Column(length = 2048)
     private String memberImage;
     private String memberTel;
     private String memberGender;
