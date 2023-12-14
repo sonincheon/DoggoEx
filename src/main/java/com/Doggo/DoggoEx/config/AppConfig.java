@@ -1,6 +1,8 @@
 package com.Doggo.DoggoEx.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
@@ -10,9 +12,11 @@ import java.util.TimeZone;
 @Configuration
 public class AppConfig {
 
-    @PostConstruct
-    public void init(){
-        // 시스템의 기본 시간대를 서울 시간대로 설정
-        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
+
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
+
 }

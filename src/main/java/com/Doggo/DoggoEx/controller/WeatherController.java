@@ -4,12 +4,8 @@ import com.Doggo.DoggoEx.service.weather.*;
 import com.Doggo.DoggoEx.utils.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,22 +15,30 @@ import java.util.Map;
 @RequestMapping("/api/weather")
 public class WeatherController {
 
-    private final MiddleWeatherService middleWeatherService;
-    private final ShortWeatherService shortWeatherService;
 
+
+    private final ShortWeatherService shortWeatherService;
+    private final MiddleWeatherService middleWeatherService;
     private final CompleteWeatherService completeWeatherService;
 
     private final WeatherDataSaveService weatherDataSaveService;
 
     private final WeatherToFrontService weatherToFrontService;
 
-    public WeatherController(MiddleWeatherService middleWeatherService, ShortWeatherService shortWeatherService, CompleteWeatherService completeWeatherService, WeatherDataSaveService weatherDataSaveService, WeatherToFrontService weatherToFrontService) {
-        this.middleWeatherService = middleWeatherService;
+    public WeatherController( ShortWeatherService shortWeatherService,
+                              MiddleWeatherService middleWeatherService,
+                              CompleteWeatherService completeWeatherService,
+                              WeatherDataSaveService weatherDataSaveService,
+                              WeatherToFrontService weatherToFrontService  ) {
         this.shortWeatherService = shortWeatherService;
+        this.middleWeatherService = middleWeatherService;
         this.completeWeatherService = completeWeatherService;
         this.weatherDataSaveService = weatherDataSaveService;
         this.weatherToFrontService = weatherToFrontService;
     }
+
+
+
 
 
 
