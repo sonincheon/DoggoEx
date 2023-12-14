@@ -19,7 +19,6 @@ public class AdminSaleController {
 
     // 판매 내역 전체 조회 → saleController에 있음
 
-
     // 송장 번호 입력
     @PutMapping({"/order/{id}"})
     public ResponseEntity<Boolean> invoiceInput(@PathVariable Long id, @RequestBody SaleDto saleDto) {

@@ -38,7 +38,9 @@ public class SaleService {
             sale.setSalesAddr(saleDto.getSalesAddr());
             sale.setFeed(feed);
             sale.setSalesType(saleDto.getSalesType());
+            sale.setSalesDelivery(saleDto.getSalesDelivery());
             sale.setSalesAutoDelivery(saleDto.getSalesAutoDelivery());
+            sale.setOrderStatus("준비중");
             saleRepository.save(sale);
             return true;
         } catch (Exception e) {
@@ -127,6 +129,7 @@ public class SaleService {
     // 세일 엔티티를 회원 DTO로 변환
     private SaleDto convertEntityToDto(Sale sale) {
         SaleDto saleDto = new SaleDto();
+        saleDto.setSaleId(sale.getId());    // 판매번호
         saleDto.setSalesPrice(sale.getSalesPrice());//구매 가격
         saleDto.setSalesAddr(sale.getSalesAddr());//배송지
         saleDto.setMemberId(sale.getMember().getMemberEmail());// 구매자
@@ -135,6 +138,8 @@ public class SaleService {
         saleDto.setSalesRegDate(sale.getSalesRegDate()); // 구매일자
         saleDto.setSalesDelivery(sale.getSalesDelivery()); //배송일자
         saleDto.setSalesAutoDelivery(sale.getSalesAutoDelivery()); //정기 배송일자
+        saleDto.setOrderStatus(sale.getOrderStatus());  // 출고상태
+        saleDto.setInvoice(sale.getInvoice());   // 송장번호
         return saleDto;
     }
 }
