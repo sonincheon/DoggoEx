@@ -34,4 +34,11 @@ public class MemberController {
         boolean isTrue = memberService.modifyMember(memberDto);
         return ResponseEntity.ok(isTrue);
     }
+
+    // 회원정보 삭제
+    @DeleteMapping("/delete/{email}")
+    public ResponseEntity<Boolean> memberDelete(@PathVariable String email) {
+        boolean isTrue = memberService.deleteMember(email);
+        return ResponseEntity.ok(isTrue);
+    }
 }

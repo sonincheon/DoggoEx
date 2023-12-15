@@ -8,5 +8,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PetProfileRepository extends JpaRepository<PetProfile, Long> {
-    List<PetProfile> findByMember_MemberEmail(String memberEmail);
+    List<PetProfile> findByMemberMemberEmail(String memberEmail);
 }

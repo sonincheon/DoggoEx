@@ -18,20 +18,18 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final MemberRepository memberRepository;
 
-    // 게시글 등록
+    // 문의 등록
     public boolean saveBoard(BoardDto boardDto) {
         try {
             Board board = new Board();
             Member member = memberRepository.findByMemberEmail(boardDto.getMemberEmail()).orElseThrow(
                     () -> new RuntimeException("해당 회원이 존재하지 않습니다.")
             );
-            board.setId(board.getId());
-            board.setBoardType(boardDto.getBoardType());
-            board.setComment(boardDto.getComment());
-            board.setBoardImg(boardDto.getBoardImg());
-            board.setRegDate(boardDto.getRegDate());
-            board.setAnswer(boardDto.getAnswer());
-            board.setMember(member);
+            board.setId(boardDto.getBoardId());             // 문의 고유번호 부여
+            board.setBoardType(boardDto.getBoardType());    // 문의 카테고리 배송, 환불 등등
+            board.setComment(boardDto.getComment());        // 문의 제목...겸 내용?
+            board.setBoardImg(boardDto.getBoardImg());      // 문의 사진첨부
+            board.setMember(member);                        // 회원 정보
             boardRepository.save(board);
             return true;
         } catch (Exception e) {

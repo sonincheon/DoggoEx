@@ -59,6 +59,14 @@ public class FeedService {
         return FeedDtos;
     }
 
+    //사료 정보 조회
+    public FeedDto getFeedInfo(Long id){
+        Feed feed = feedRepository.findById(id).orElseThrow(
+                ()-> new RuntimeException("사료 정보를 찾을수없습니다.")
+        );
+        return convertEntityToDto(feed);
+    }
+
     //사료 판매 완료후 판매수 증가
     public boolean cntFeed(Long id) {
         try {

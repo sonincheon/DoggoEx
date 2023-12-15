@@ -44,7 +44,7 @@ public class PetProfileService {
 
     // 회원 이메일로 반려동물 조회
     public List<PetProfileDto> getPetProfileByEmail(String email) {
-        List<PetProfile> petProfiles = petProfileRepository.findByMember_MemberEmail(email);
+        List<PetProfile> petProfiles = petProfileRepository.findByMemberMemberEmail(email);
         List<PetProfileDto> petProfileDtos = new ArrayList<>();
         for(PetProfile petProfile : petProfiles) {
             petProfileDtos.add(convertEntityToDto(petProfile));

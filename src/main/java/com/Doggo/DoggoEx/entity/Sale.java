@@ -19,6 +19,9 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id; //구매 넘버
 
+    @Column(name = "sales_name")
+    private String salesName; //상품명
+
     @Column(name = "sales_price")
     private Integer salesPrice; //구매 가격
 

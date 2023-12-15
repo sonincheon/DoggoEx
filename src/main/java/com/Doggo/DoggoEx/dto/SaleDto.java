@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class SaleDto {
     private Long saleId; //구매 넘버
+    private String salesName; //구매명
     private Integer salesPrice; //구매 가격
     private String memberId; // 구매자
     private String salesAddr;  //배송지
