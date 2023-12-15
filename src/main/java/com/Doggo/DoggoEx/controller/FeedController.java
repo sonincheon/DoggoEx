@@ -27,16 +27,23 @@ public class FeedController {
     }
     // 사료 삭제
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Boolean> boardDelete(@PathVariable Long id) {
+    public ResponseEntity<Boolean> feedDelete(@PathVariable Long id) {
         boolean isTrue = feedService.deleteFeed(id);
         return ResponseEntity.ok(isTrue);
     }
     //개 ,고양이 사료별 조회
     @GetMapping("/list/type")
-    public ResponseEntity<List<FeedDto>> boardListByEmail(@RequestParam FeedType type) {
+    public ResponseEntity<List<FeedDto>> feedListByType(@RequestParam FeedType type) {
         List<FeedDto> list = feedService.getFeedList(type);
         return ResponseEntity.ok(list);
     }
+
+    @GetMapping("/list/id")
+    public ResponseEntity<FeedDto> feedListByEmail(@RequestParam Long id) {
+        FeedDto feedInfo = feedService.getFeedInfo(id);
+        return ResponseEntity.ok(feedInfo);
+    }
+
     //사료 판매 완료후 판매수 증가
     @GetMapping("/detail/{id}")
     public ResponseEntity<Boolean> boardDetail(@PathVariable Long id) {
