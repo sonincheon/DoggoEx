@@ -35,7 +35,7 @@ public class WeatherScheduler {
         this.weatherDataSaveService = weatherDataSaveService;
     }
 
-    @Scheduled(cron = "0 0 10 * * ?") // 매일 아침 6시에 실행
+    @Scheduled(cron = "0 30 9 * * ?") // 매일 아침 6시에 실행
     public void executeWeatherTasks() throws JsonProcessingException {
         try {
             System.out.println("스케쥴러 시작 ! ! ! !");
