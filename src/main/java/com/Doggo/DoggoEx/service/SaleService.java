@@ -54,9 +54,6 @@ public class SaleService {
         }
     }
 
-
-
-
     // 배송 수정
     public boolean saleDeliveryChange(Long id, SaleDto saleDto) {
         try {
@@ -79,7 +76,6 @@ public class SaleService {
             return false;
         }
     }
-
 
 
     // 구매 취소
@@ -111,6 +107,12 @@ public class SaleService {
             SaleDto.add(convertEntityToDto(sale));
         }
         return SaleDto;
+    }
+    public SaleDto detailSale(Long id) {
+        Sale sale =saleRepository.findById(id).orElseThrow(
+                ()->new RuntimeException("해당 판매 내역이 존재하지 않습니다")
+        );
+        return convertEntityToDto(sale);
     }
 
     // 세일 엔티티를 회원 DTO로 변환
