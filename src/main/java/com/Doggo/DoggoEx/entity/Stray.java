@@ -1,5 +1,7 @@
 package com.Doggo.DoggoEx.entity;
 
+import com.Doggo.DoggoEx.dto.StrayDto;
+import com.Doggo.DoggoEx.dto.WeatherDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,5 +29,16 @@ public class Stray {
     private Long animalNumber;
 
     private String imageLink;
+
+    public StrayDto toDto() {
+        return StrayDto.builder()
+                .id(this.getId())
+                .region(this.getRegion())
+                .city(this.getCity())
+                .breed(this.getBreed())
+                .animalNumber(this.getAnimalNumber())
+                .imageLink(this.getImageLink())
+                .build();
+    }
 
 }
