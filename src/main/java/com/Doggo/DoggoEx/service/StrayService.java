@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,8 +62,16 @@ public class StrayService {
 
         }
 
+    }
 
-
+    public List<StrayDto> getStraysByRegion(String region) {
+        List<StrayDto> strayDtos = new ArrayList<>();
+        List<Stray> strayList = strayRepository.findAllByRegion(region);
+        for (Stray stray : strayList) {
+        StrayDto strayDto = stray.toDto();
+        strayDtos.add(strayDto);
+        }
+        return strayDtos;
     }
 
 }

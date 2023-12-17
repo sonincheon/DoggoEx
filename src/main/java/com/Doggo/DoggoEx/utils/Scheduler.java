@@ -53,7 +53,7 @@ public class Scheduler {
         }
     }
     // 초 분 시 일 월 요일
-    @Scheduled(cron = "0 30 9 * * ?") // 매일 아침 6시에 실행
+    @Scheduled(cron = "0 0 6 * * ?") // 매일 아침 6시에 실행
     public void executeWeatherTasks() throws JsonProcessingException {
         try {
             System.out.println("날씨 스케쥴러 시작 ! ! ! !");
@@ -86,7 +86,7 @@ public class Scheduler {
     @Scheduled(cron = "0 0 * * * ?") // 한시간마다 실행
     public void executeStrayTasks() throws JsonProcessingException {
         try {
-            strayService.deleteAllStrayData();;
+            strayService.deleteAllStrayData();
             System.out.println("유기동물 스케쥴러 시작 ! ! ! !");
             strayService.insertStrays();
             System.out.println("날씨 정보 insert 작동완료 ! ! ! ! !");

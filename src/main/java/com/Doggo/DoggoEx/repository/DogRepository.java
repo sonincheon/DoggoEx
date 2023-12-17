@@ -1,8 +1,7 @@
 package com.Doggo.DoggoEx.repository;
 
-import com.Doggo.DoggoEx.dto.CatDto;
+
 import com.Doggo.DoggoEx.dto.DogDto;
-import com.Doggo.DoggoEx.entity.Cat;
 import com.Doggo.DoggoEx.entity.Dog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

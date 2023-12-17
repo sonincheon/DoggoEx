@@ -16,17 +16,17 @@ public class StrayController {
         this.strayService = strayService;
     }
     // 파이썬 크롤링 결과 확인용
-    @GetMapping("/get")
-    public ResponseEntity<List<StrayDto>> getStrays() {
-        try {
-            List<StrayDto> strays = strayService.getStrays();
-            return ResponseEntity.ok(strays);
-        } catch (Exception e) {
-            // 오류 처리
-            e.printStackTrace();
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    @GetMapping("/get/list")
+//    public ResponseEntity<List<StrayDto>> getStrays() {
+//        try {
+//            List<StrayDto> strays = strayService.getStrays();
+//            return ResponseEntity.ok(strays);
+//        } catch (Exception e) {
+//            // 오류 처리
+//            e.printStackTrace();
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
     // 파이썬 크롤링 결과 확인 및 insert
     @PostMapping("/insert")
     public ResponseEntity<?> insertStray() {
@@ -39,4 +39,17 @@ public class StrayController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/get/{region}")
+    public ResponseEntity<List<StrayDto>> getStrayList(@PathVariable String region) {
+        try {
+            List<StrayDto> strayDtos = strayService.getStraysByRegion(region);
+            return ResponseEntity.ok(strayDtos);
+        } catch (Exception e) {
+            // 오류 처리
+            e.printStackTrace();
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
