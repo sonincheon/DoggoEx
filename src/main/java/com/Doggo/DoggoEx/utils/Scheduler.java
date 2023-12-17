@@ -58,7 +58,7 @@ public class Scheduler {
         try {
             System.out.println("날씨 스케쥴러 시작 ! ! ! !");
             // 데이터 insert하기전 날씨테이블의 모든 레코드 삭제 , 이는 최신화된 정보만 보관을 위함
-            weatherDataSaveService.deleteAllWeatherData();
+
 
             // 지역별 코드
             Map<String, String> locationCode = shortWeatherService.getLocationCode();
@@ -73,7 +73,7 @@ public class Scheduler {
 
             // 단기예보 + 중기예보
             Map<String, List<List<String>>> completeWeather = completeWeatherService.getCompleteWeather(completeShort, completeMiddle);
-
+            weatherDataSaveService.deleteAllWeatherData();
             // 각 도시별 일주일 날씨 정보 db에 insert
             weatherDataSaveService.saveWeatherData(completeWeather);
             System.out.println("날씨 정보 insert 작동 ! ! ! ! !");
@@ -86,7 +86,7 @@ public class Scheduler {
     @Scheduled(cron = "0 0 * * * ?") // 한시간마다 실행
     public void executeStrayTasks() throws JsonProcessingException {
         try {
-            strayService.deleteAllStrayData();
+
             System.out.println("유기동물 스케쥴러 시작 ! ! ! !");
             strayService.insertStrays();
             System.out.println("날씨 정보 insert 작동완료 ! ! ! ! !");
