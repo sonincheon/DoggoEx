@@ -1,6 +1,7 @@
 package com.Doggo.DoggoEx.utils;
 
 
+import com.Doggo.DoggoEx.service.StrayService;
 import com.Doggo.DoggoEx.service.weather.CompleteWeatherService;
 import com.Doggo.DoggoEx.service.weather.MiddleWeatherService;
 import com.Doggo.DoggoEx.service.weather.ShortWeatherService;
@@ -24,15 +25,20 @@ public class Scheduler {
 
     private final WeatherDataSaveService weatherDataSaveService;
 
+    private final StrayService strayService;
+
+
+
     public Scheduler(MiddleWeatherService middleWeatherService,
                      ShortWeatherService shortWeatherService,
                      CompleteWeatherService completeWeatherService,
-                     WeatherDataSaveService weatherDataSaveService) {
+                     WeatherDataSaveService weatherDataSaveService, StrayService strayService) {
 
         this.middleWeatherService = middleWeatherService;
         this.shortWeatherService = shortWeatherService;
         this.completeWeatherService = completeWeatherService;
         this.weatherDataSaveService = weatherDataSaveService;
+        this.strayService = strayService;
     }
 
 
@@ -41,6 +47,7 @@ public class Scheduler {
         // 서비스 시작 시 한 번 실행할 작업
         try {
             executeWeatherTasks();
+            executeStrayTasks();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -79,10 +86,10 @@ public class Scheduler {
     @Scheduled(cron = "0 0 * * * ?") // 한시간마다 실행
     public void executeStrayTasks() throws JsonProcessingException {
         try {
+            strayService.deleteAllStrayData();;
             System.out.println("유기동물 스케쥴러 시작 ! ! ! !");
-            // 데이터 insert하기전 날씨테이블의 모든 레코드 삭제 , 이는 최신화된 정보만 보관을 위함
-            //
-//            System.out.println("날씨 정보 insert 작동 ! ! ! ! !");
+            strayService.insertStrays();
+            System.out.println("날씨 정보 insert 작동완료 ! ! ! ! !");
         } catch (Exception e) {
             e.printStackTrace();
 

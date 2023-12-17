@@ -5,6 +5,7 @@ import com.Doggo.DoggoEx.entity.Stray;
 import com.Doggo.DoggoEx.repository.StrayRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,6 +27,10 @@ public class StrayService {
         this.restTemplate = new RestTemplate();
     }
 
+    public void deleteAllStrayData() {
+        strayRepository.deleteAll();
+    }
+
     public List<StrayDto> getStrays() {
         try {
             String jsonResponse = restTemplate.getForObject(flaskUrl, String.class);
@@ -37,9 +42,10 @@ public class StrayService {
             return Collections.emptyList(); // 빈 리스트 반환
         }
     }
-
+    @Transactional
     public void insertStrays() {
         try {
+            deleteAllStrayData();
             String jsonResponse = restTemplate.getForObject(flaskUrl, String.class);
             ObjectMapper mapper = new ObjectMapper();
             StrayDto[] strayDtos = mapper.readValue(jsonResponse, StrayDto[].class);
@@ -47,7 +53,7 @@ public class StrayService {
             for (StrayDto strayDto : strayDtos) {
                 Stray stray = strayDto.toEntity();
                 strayRepository.save(stray);
-                System.out.println("stray ! ! !" + stray);
+                System.out.println(stray);
             }
         } catch (Exception e) {
             // 오류 처리
