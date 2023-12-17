@@ -1,5 +1,6 @@
 package com.Doggo.DoggoEx.controller;
 
+import com.Doggo.DoggoEx.dto.CalenderDto;
 import com.Doggo.DoggoEx.dto.DiaryDto;
 import com.Doggo.DoggoEx.service.DiaryService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 //@CrossOrigin(origins = CORS_ORIGIN)
@@ -41,4 +44,12 @@ public class DiaryController {
         DiaryDto diaryDto = diaryService.diaryDetail(email,LocalDate.parse(date));
         return ResponseEntity.ok(diaryDto);
     }
+
+    //캘린더 내용 출력
+    @GetMapping("/Calender/{email}")
+    public ResponseEntity<Map<LocalDate,String>> boardDetail(@PathVariable String email) {
+        Map<LocalDate,String> CalenderList = diaryService.CalenderMap(email);
+        return ResponseEntity.ok(CalenderList);
+    }
+
 }

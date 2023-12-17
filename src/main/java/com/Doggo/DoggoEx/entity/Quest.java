@@ -21,19 +21,19 @@ public class Quest {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "quest_1",columnDefinition = "boolean default false")
+    @Column(name = "quest_1")
     private Boolean quest1;
 
-    @Column(name = "quest_2",columnDefinition = "boolean default false")
+    @Column(name = "quest_2")
     private Boolean quest2;
 
-    @Column(name = "quest_3",columnDefinition = "boolean default false")
+    @Column(name = "quest_3")
     private Boolean quest3;
 
-    @Column(name = "quest_4",columnDefinition = "boolean default false")
+    @Column(name = "quest_4")
     private Boolean quest4;
 
-    @Column(name = "quest_5",columnDefinition = "boolean default false")
+    @Column(name = "quest_5")
     private Boolean quest5;
 
     @ManyToOne(fetch = FetchType.LAZY) // 지연 전략
