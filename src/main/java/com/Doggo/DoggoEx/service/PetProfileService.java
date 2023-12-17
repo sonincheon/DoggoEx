@@ -64,6 +64,8 @@ public class PetProfileService {
                 petProfile.setBreed(petProfileDto.getBreed());}
             if(petProfileDto.getImageLink()!=null){
                 petProfile.setImageLink(petProfileDto.getImageLink());}
+            if(petProfileDto.getAnimalType()!=null){
+                petProfile.setAnimalType(petProfileDto.getAnimalType());}
             if(petProfileDto.getDetail()!=null){
                 petProfile.setDetail(petProfileDto.getDetail());}
             if(petProfileDto.getBirthDate()!=null){
