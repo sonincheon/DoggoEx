@@ -23,7 +23,7 @@ public class AdminSaleController {
     // 송장 번호 입력
     @PutMapping({"/order/{id}"})
     public ResponseEntity<Boolean> invoiceInput(@PathVariable Long id, @RequestBody SaleDto saleDto) {
-        boolean isTrue = adminSaleService.invoiceNum(id, saleDto.getInvoice());
+        boolean isTrue = adminSaleService.invoiceNum(id, saleDto.getOrderStatus(), saleDto.getInvoice());
         return ResponseEntity.ok(isTrue);
     }
 
