@@ -28,7 +28,7 @@ public class StrayController {
 //        }
 //    }
     // 파이썬 크롤링 결과 확인 및 insert
-    @PostMapping("/insert")
+    @GetMapping("/insert")
     public ResponseEntity<?> insertStray() {
         try {
             strayService.insertStrays();
