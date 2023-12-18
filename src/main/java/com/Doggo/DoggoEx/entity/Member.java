@@ -41,6 +41,8 @@ public class Member {
     private List<Diary> diarys;
     @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
     private List<PetProfile> petProfiles;
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    private List<Board> board;
 
     @Enumerated(EnumType.STRING)
     private Authority authority;
