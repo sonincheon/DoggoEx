@@ -70,6 +70,15 @@ public class MemberService {
         }
     }
 
+    // 이메일 출력
+    public String getEmail(Long id) {
+        Member member = memberRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("해당 회원이 존재하지 않습니다.")
+        );
+
+        return member.getMemberEmail();
+    }
+
 
     private MemberResDto convertEntityToDto(Member member) {
         MemberResDto memberResDto = new MemberResDto();

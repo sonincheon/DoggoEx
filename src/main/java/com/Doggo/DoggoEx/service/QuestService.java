@@ -94,10 +94,8 @@ public class QuestService {
     public Map<LocalDate, Integer> memberPercent(String email) {
         // 이메일에 해당하는 회원의 반려동물 프로필 목록을 가져옵니다.
         List<PetProfile> petProfiles = petProfileRepository.findByMemberMemberEmail(email);
-
         // 각 날짜별로 펫 프로필의 퀘스트 결과를 모읍니다.
         Map<LocalDate, Integer> totalResult = new HashMap<>();
-
         for (PetProfile petProfile : petProfiles) {
             List<Quest> quests = questRepository.findByPetProfileId(petProfile.getId());
             for (Quest quest : quests) {
@@ -115,11 +113,8 @@ public class QuestService {
             double average = (double) totalPercent / numberOfPets;
             result.put(date, (int) average); // 날짜와 평균 퍼센트를 결과 맵에 저장합니다.
         });
-
         return result;
     }
-
-
 
     //Enttity Dto로 변환
     private QuestDto convertEntityToDto(Quest quest) {
