@@ -5,7 +5,12 @@ import com.Doggo.DoggoEx.entity.Board;
 import com.Doggo.DoggoEx.entity.Sale;
 import com.Doggo.DoggoEx.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -36,5 +41,21 @@ public class AdminBoardService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    // 페이지네이션
+    public List<BoardDto> getBoardList(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        List<Board> boards = boardRepository.findAll(pageable).getContent();
+        List<BoardDto> boardDtos = new ArrayList<>();
+        for (Board board : boards) {
+            boardDtos.add(boardService.convertEntityToDto(board));
+        }
+        return boardDtos;
+    }
+
+    // 페이지 수 조회
+    public int getBoardPage(Pageable pageable) {
+        return boardRepository.findAll(pageable).getTotalPages();
     }
 }

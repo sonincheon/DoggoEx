@@ -4,6 +4,8 @@ import com.Doggo.DoggoEx.dto.MemberResDto;
 import com.Doggo.DoggoEx.entity.Member;
 import com.Doggo.DoggoEx.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -37,6 +39,17 @@ public class AdminMemberService {
         }
     }
 
+    // 게시글 페이징
+    public List<MemberResDto> getMemberList(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        List<Member> members = memberRepository.findAll(pageable).getContent();
+        List<MemberResDto> memberResDtos = new ArrayList<>();
+        for(Member member : members) {
+            memberResDtos.add(convertEntityToDto(member));
+        }
+        return memberResDtos;
+    }
+
     // member entity → Dto
     private MemberResDto convertEntityToDto(Member member) {
         MemberResDto memberResDto = new MemberResDto();
@@ -51,5 +64,9 @@ public class AdminMemberService {
         memberResDto.setRegDate(member.getRegDate());
         memberResDto.setMemberGrade(member.getMemberGrade());
         return memberResDto;
+    }
+    // 페이지 수 조회
+    public int getMembers(Pageable pageable) {
+        return memberRepository.findAll(pageable).getTotalPages();
     }
 }

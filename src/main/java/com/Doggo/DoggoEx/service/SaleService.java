@@ -116,7 +116,7 @@ public class SaleService {
     }
 
     // 세일 엔티티를 회원 DTO로 변환
-    private SaleDto convertEntityToDto(Sale sale) {
+    public SaleDto convertEntityToDto(Sale sale) {
         SaleDto saleDto = new SaleDto();
         saleDto.setSaleId(sale.getId());    // 판매번호
         saleDto.setSalesPrice(sale.getSalesPrice());//구매 가격

@@ -5,6 +5,8 @@ import com.Doggo.DoggoEx.dto.SaleDto;
 import com.Doggo.DoggoEx.entity.Sale;
 import com.Doggo.DoggoEx.repository.SaleRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,6 +44,21 @@ public class AdminSaleService {
             e.printStackTrace();
             return false;
         }
+    }
+    // 페이지네이션
+    public List<SaleDto> getSaleList(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        List<Sale> sales = saleRepository.findAll(pageable).getContent();
+        List<SaleDto> saleDtos = new ArrayList<>();
+        for(Sale sale : sales) {
+            saleDtos.add(saleService.convertEntityToDto(sale));
+        }
+        return saleDtos;
+    }
+
+    // 페이지 수 계산
+    public int getSalePage(Pageable pageable) {
+        return saleRepository.findAll(pageable).getTotalPages();
     }
 
 
