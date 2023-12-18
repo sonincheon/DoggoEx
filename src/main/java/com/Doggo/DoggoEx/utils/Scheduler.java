@@ -9,6 +9,7 @@ import com.Doggo.DoggoEx.service.weather.WeatherDataSaveService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.ResourceAccessException;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -50,6 +51,9 @@ public class Scheduler {
             executeStrayTasks();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            // 다른 예외에 대한 처리
+            e.printStackTrace();
         }
     }
     // 초 분 시 일 월 요일
@@ -77,22 +81,27 @@ public class Scheduler {
             // 각 도시별 일주일 날씨 정보 db에 insert
             weatherDataSaveService.saveWeatherData(completeWeather);
             System.out.println("날씨 정보 insert 작동 ! ! ! ! !");
-        } catch (Exception e) {
+        } catch (ResourceAccessException e) {
+            // 로그에 예외 정보 기록
             e.printStackTrace();
 
+        } catch (Exception e) {
+
+            e.printStackTrace();
         }
+
     }
 
     @Scheduled(cron = "0 0 * * * ?") // 한시간마다 실행
     public void executeStrayTasks() throws JsonProcessingException {
         try {
-
-            System.out.println("유기동물 스케쥴러 시작 ! ! ! !");
             strayService.insertStrays();
-            System.out.println("날씨 정보 insert 작동완료 ! ! ! ! !");
-        } catch (Exception e) {
+            System.out.println("유기동물 정보 insert 작동완료 ! ! ! ! !");
+        } catch (ResourceAccessException e) {
             e.printStackTrace();
+        } catch (Exception e) {
 
+            e.printStackTrace();
         }
     }
 
