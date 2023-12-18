@@ -14,7 +14,7 @@ import java.util.Date;
 @ToString
 
 public class BoardDto {
-    private Long BoardId;
+    private Long boardId;
     private BoardType boardType;
     private String comment;
     private String boardImg;
