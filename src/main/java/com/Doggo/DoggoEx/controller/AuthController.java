@@ -42,6 +42,13 @@ public class AuthController {
         boolean isTrue = memberService.isMember(email);
         return ResponseEntity.ok(!isTrue);
     }
+
+    @GetMapping("/findId")
+    public ResponseEntity<String> findId(@RequestParam String name, @RequestParam String tel) {
+        String memberEmail = authService.findId(name, tel);
+        return ResponseEntity.ok(memberEmail);
+    }
+
     // accessToken 재발급
     @PostMapping("/refresh")
     public ResponseEntity<String> refreshToken(@RequestBody String refreshToken) {

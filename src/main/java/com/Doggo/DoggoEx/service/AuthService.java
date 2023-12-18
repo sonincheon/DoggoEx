@@ -44,6 +44,13 @@ public class AuthService {
         return tokenProvider.generateTokenDto(authentication);
     }
 
+    public String findId(String name, String tel) {
+        Member member = memberRepository.findByMemberNameAndMemberTel(name, tel).orElseThrow(
+                () -> new RuntimeException("해당 회원이 존재하지 않습니다.")
+        );
+        return member.getMemberEmail();
+    }
+
     // accessToken 재발급
     public String createAccessToken(String refreshToken) {
         Authentication authentication = tokenProvider.getAuthentication(refreshToken);
