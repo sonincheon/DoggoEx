@@ -29,12 +29,15 @@ public class DogDto {
     // @JsonIgnore 원래는 제외 대상이었는데 로직변경으로 변동됨
     private long id; // DB에서 사용할 ID, JSON 매핑 제외
 
-
     // JsonView로 명시해 놓으면 RestController 측 메서드에 해당 어노테이션을
     // 명시해놓으면 해당 필드만 Json 직렬화 처리됨 개꿀띠
     @JsonView(Views.Public.class)
     @JsonProperty("name")
     private String name;
+
+    @JsonView(Views.Public.class)
+    @JsonProperty("korean_name")
+    private String koreanName;
 
     @JsonView(Views.Public.class)
     @JsonProperty("image_link")
@@ -108,9 +111,10 @@ public class DogDto {
 
 
     // @Query 어노테이션과 조합하기 위해서는 빌더가 아닌 생성자가 필요하다더라....
-    public DogDto(Long id, String name, String imageLink) {
+    public DogDto(Long id, String name,String koreanName, String imageLink) {
         this.id = id;
         this.name = name;
+        this.koreanName = koreanName;
         this.imageLink = imageLink;
 
     }
@@ -120,6 +124,7 @@ public class DogDto {
     public Dog toEntity() {
         return Dog.builder()
                 .name(this.getName())
+                .koreanName(this.getKoreanName())
                 .imageLink(this.getImageLink())
                 .goodWithChildren(this.getGoodWithChildren())
                 .goodWithOtherDogs(this.getGoodWithOtherDogs())

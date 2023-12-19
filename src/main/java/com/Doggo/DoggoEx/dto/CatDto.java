@@ -27,9 +27,12 @@ public class CatDto {
     private String name;
 
     @JsonView(Views.Public.class)
+    @JsonProperty("korean_name")
+    private String koreanName;
+
+    @JsonView(Views.Public.class)
     @JsonProperty("image_link")
     private String imageLink;
-
 
     @JsonProperty("family_friendly")
     private int familyFriendly;
@@ -93,9 +96,10 @@ public class CatDto {
     private AnimalType animalType;
 
     // @Query 어노테이션과 조합하기 위해서는 빌더가 아닌 생성자가 필요하다더라....
-    public CatDto(Long id, String name, String imageLink) {
+    public CatDto(Long id, String name,String koreanName, String imageLink) {
         this.id = id;
         this.name = name;
+        this.koreanName = koreanName;
         this.imageLink = imageLink;
 
     }
@@ -106,6 +110,7 @@ public class CatDto {
     public Cat toEntity() {
         return Cat.builder()
                 .name(this.getName())
+                .koreanName(this.getKoreanName())
                 .animalTypeId(this.getAnimalType())
                 .imageLink(this.getImageLink())
                 .origin((this.getOrigin()))

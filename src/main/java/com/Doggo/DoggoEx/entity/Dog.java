@@ -24,6 +24,9 @@ public class Dog {
     @Column(unique = true)
     private String name;
 
+    @Column(unique = true)
+    private String koreanName;
+
     private String imageLink;
 
     private int goodWithChildren;

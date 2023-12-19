@@ -39,13 +39,13 @@ public class CatController {
         }
     }
 
-    @GetMapping("/detail/{name}")
+    @GetMapping("/detail/{koreanName}")
     //@ PathVariable에서  RequstParam으로 변경 , 주소에 쿼리파라미터로 전달하는게 url에 직접 기입방식보다 간결함
-    public ResponseEntity<CatDto> getCatByName(@PathVariable String name) {
+    public ResponseEntity<CatDto> getCatByName(@PathVariable String koreanName) {
         try {
-            CatDto catDto = catService.getCatByName(name);
-            CatDto korCatDto = engToKorService.catToKor(catDto);
-            return ResponseEntity.ok(korCatDto);
+            CatDto catDto = catService.getCatByName(koreanName);
+
+            return ResponseEntity.ok(catDto);
         } catch (Exception e) {
             // 데이터가 조회되지 않았을때 발생하는 에러를 처리하기 위한 예외처리
             return ResponseEntity.notFound().build();
@@ -57,11 +57,7 @@ public class CatController {
     public ResponseEntity<List<CatDto>> getCatSimpleView(Pageable pageable) {
         try {
             List<CatDto> catDtos = catService.getCatsSortedByKoreanName(pageable);
-            List<CatDto> korCatDtos = catDtos.stream()
-                    .map(engToKorService::catToKor)
-                    .sorted(Comparator.comparing(CatDto::getName))
-                    .collect(Collectors.toList());
-            return ResponseEntity.ok(korCatDtos);
+            return ResponseEntity.ok(catDtos);
         } catch (Exception e) {
             // 데이터가 조회되지 않았을때 발생하는 에러를 처리하기 위한 예외처리
             return ResponseEntity.notFound().build();

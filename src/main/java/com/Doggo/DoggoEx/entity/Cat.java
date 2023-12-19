@@ -26,6 +26,9 @@ public class Cat {
     @Column(unique = true)
     private String name;
 
+    @Column(unique = true)
+    private String koreanName;
+
     private String imageLink;
 
     private String origin;
@@ -66,6 +69,7 @@ public class Cat {
                 .id(this.getId())
                 .animalType(this.getAnimalTypeId())
                 .name(this.getName())
+                .koreanName(this.getKoreanName())
                 .imageLink(this.getImageLink())
                 .origin((this.getOrigin()))
                 .length(this.getLength())
@@ -80,8 +84,8 @@ public class Cat {
                 .playfulness(this.getPlayfulness())
                 .minWeight(this.getMinWeight())
                 .maxWeight(this.getMaxWeight())
-                .minWeight(this.getMinWeight())
-                .maxWeight(this.getMaxWeight())
+                .minWeight(this.getMinLifeExpectancy())
+                .maxWeight(this.getMaxLifeExpectancy())
                 .build();
     }
 

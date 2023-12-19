@@ -38,13 +38,13 @@ public class DogController {
 
     }
 
-    @GetMapping("/detail/{name}")
+    @GetMapping("/detail/{koreanName}")
     //@ PathVariable에서  RequstParam으로 변경 , 주소에 쿼리파라미터로 전달하는게 url에 직접 기입방식보다 간결함
-    public ResponseEntity<DogDto> getDogByName(@PathVariable String name) {
+    public ResponseEntity<DogDto> getDogByName(@PathVariable String koreanName) {
         try {
-            DogDto dogDto = dogService.getDogByName(name);
-            DogDto korDogDto = engToKorService.dogToKor(dogDto);
-            return ResponseEntity.ok(korDogDto);
+            DogDto dogDto = dogService.getDogByName(koreanName);
+//            DogDto korDogDto = engToKorService.dogToKor(dogDto);
+            return ResponseEntity.ok(dogDto);
         } catch (Exception e) {
             // 데이터가 조회되지 않았을때 발생하는 에러를 처리하기 위한 예외처리
             return ResponseEntity.notFound().build();
@@ -58,11 +58,7 @@ public class DogController {
         try {
             Pageable pageable = PageRequest.of(page, size);
             List<DogDto> dogDtos = dogService.getDogsSortedByKoreanName(pageable);
-            List<DogDto> korDogDtos = dogDtos.stream()
-                    .map(engToKorService::dogToKor)
-                    .sorted(Comparator.comparing(DogDto::getName))
-                    .collect(Collectors.toList());
-            return ResponseEntity.ok(korDogDtos);
+            return ResponseEntity.ok(dogDtos);
         } catch (Exception e) {
             // 데이터가 조회되지 않았을때 발생하는 에러를 처리하기 위한 예외처리
             return ResponseEntity.notFound().build();
