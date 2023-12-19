@@ -95,6 +95,7 @@ public class Scheduler {
     @Scheduled(cron = "0 0 * * * ?") // 한시간마다 실행
     public void executeStrayTasks() throws JsonProcessingException {
         try {
+            System.out.println("유기동물 정보 크롤링 요청 시작 ! ! ! ! !");
             strayService.insertStrays();
             System.out.println("유기동물 정보 insert 작동완료 ! ! ! ! !");
         } catch (ResourceAccessException e) {

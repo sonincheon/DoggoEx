@@ -8,6 +8,7 @@ import com.Doggo.DoggoEx.repository.AnimalTypeRepository;
 import com.Doggo.DoggoEx.repository.DogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -120,8 +121,8 @@ public class DogService {
     }
 
     // 견종 가나다 순으로 정렬
-    public List<DogDto> getDogsSortedByKoreanName() {
-        return dogRepository.findAllByOrderByNameAsc();
+    public List<DogDto> getDogsSortedByKoreanName(Pageable pageable) {
+        return dogRepository.findAllByOrderByNameAsc(pageable);
     }
 
 }

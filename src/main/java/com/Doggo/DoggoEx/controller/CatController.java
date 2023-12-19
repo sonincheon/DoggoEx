@@ -5,6 +5,7 @@ import com.Doggo.DoggoEx.utils.Views;
 import com.Doggo.DoggoEx.service.CatService;
 import com.Doggo.DoggoEx.service.EngToKorService;
 import com.fasterxml.jackson.annotation.JsonView;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,9 +54,9 @@ public class CatController {
 
     @GetMapping("/view/list")
     @JsonView(Views.Public.class)
-    public ResponseEntity<List<CatDto>> getCatSimpleView() {
+    public ResponseEntity<List<CatDto>> getCatSimpleView(Pageable pageable) {
         try {
-            List<CatDto> catDtos = catService.getCatsSortedByKoreanName();
+            List<CatDto> catDtos = catService.getCatsSortedByKoreanName(pageable);
             List<CatDto> korCatDtos = catDtos.stream()
                     .map(engToKorService::catToKor)
                     .sorted(Comparator.comparing(CatDto::getName))

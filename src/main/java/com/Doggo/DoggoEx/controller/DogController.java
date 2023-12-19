@@ -6,6 +6,8 @@ import com.Doggo.DoggoEx.utils.Views;
 import com.Doggo.DoggoEx.service.DogService;
 import com.Doggo.DoggoEx.service.EngToKorService;
 import com.fasterxml.jackson.annotation.JsonView;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,9 +53,11 @@ public class DogController {
 
     @GetMapping("/view/list")
     @JsonView(Views.Public.class)
-    public ResponseEntity<List<DogDto>> getCatSimpleView() {
+    public ResponseEntity<List<DogDto>> getDogSimpleView(@RequestParam(defaultValue = "0") int page,
+                                                         @RequestParam(defaultValue = "8") int size) {
         try {
-            List<DogDto> dogDtos = dogService.getDogsSortedByKoreanName();
+            Pageable pageable = PageRequest.of(page, size);
+            List<DogDto> dogDtos = dogService.getDogsSortedByKoreanName(pageable);
             List<DogDto> korDogDtos = dogDtos.stream()
                     .map(engToKorService::dogToKor)
                     .sorted(Comparator.comparing(DogDto::getName))

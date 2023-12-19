@@ -8,6 +8,7 @@ import com.Doggo.DoggoEx.repository.AnimalTypeRepository;
 import com.Doggo.DoggoEx.repository.CatRepository;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -107,7 +108,7 @@ public class CatService {
         return entityToCatDto(cat);
     }
 
-    public List<CatDto> getCatsSortedByKoreanName() {
-        return catRepository.findAllByOrderByNameAsc();
+    public List<CatDto> getCatsSortedByKoreanName(Pageable pageable) {
+        return catRepository.findAllByOrderByNameAsc(pageable);
     }
 }
