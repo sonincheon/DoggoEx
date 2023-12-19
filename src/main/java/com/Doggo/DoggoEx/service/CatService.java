@@ -1,12 +1,10 @@
 package com.Doggo.DoggoEx.service;
 
 import com.Doggo.DoggoEx.dto.CatDto;
-
 import com.Doggo.DoggoEx.entity.AnimalType;
 import com.Doggo.DoggoEx.entity.Cat;
 import com.Doggo.DoggoEx.repository.AnimalTypeRepository;
 import com.Doggo.DoggoEx.repository.CatRepository;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.*;
@@ -98,6 +96,9 @@ public class CatService {
             }
         }
     }
+
+
+
 
 
 

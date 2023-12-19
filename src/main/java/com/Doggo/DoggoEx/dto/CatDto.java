@@ -126,8 +126,8 @@ public class CatDto {
                 .playfulness(this.getPlayfulness())
                 .minWeight(this.getMinWeight())
                 .maxWeight(this.getMaxWeight())
-                .minWeight(this.getMinWeight())
-                .maxWeight(this.getMaxWeight())
+                .minLifeExpectancy(this.getMinLifeExpectancy())
+                .maxLifeExpectancy(this.getMaxLifeExpectancy())
                 .build();
     }
 }

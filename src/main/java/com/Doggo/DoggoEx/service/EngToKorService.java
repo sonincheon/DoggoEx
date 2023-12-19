@@ -325,7 +325,7 @@ public class EngToKorService {
         catNameMapping.put("Lykoi", "라이코이");
         catNameMapping.put("Napoleon", "나폴레옹");
         catNameMapping.put("Nebelung", "네벨룽");
-        catNameMapping.put("Norwegian Forest", "노르웨이지안 포레스트");
+        catNameMapping.put("Norwegian Forest", "노르웨이안 포레스트");
         catNameMapping.put("Persian", "페르시안");
         catNameMapping.put("Peterbald", "피터볼드");
         catNameMapping.put("Pixie-Bob", "픽시 밥");
