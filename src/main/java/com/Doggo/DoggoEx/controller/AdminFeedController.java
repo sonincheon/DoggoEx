@@ -1,15 +1,14 @@
 package com.Doggo.DoggoEx.controller;
 
+import com.Doggo.DoggoEx.dto.BoardDto;
 import com.Doggo.DoggoEx.dto.FeedDto;
+import com.Doggo.DoggoEx.dto.PetProfileDto;
 import com.Doggo.DoggoEx.service.AdminFeedService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +25,23 @@ public class AdminFeedController {
         List<FeedDto> list = adminFeedService.getAdminFeedList();
         return ResponseEntity.ok(list);
     }
+
+    // 상세 조회
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<FeedDto> feedDetail(@PathVariable Long id) {
+        FeedDto feedDto = adminFeedService.getFeedDetail(id);
+        return ResponseEntity.ok(feedDto);
+    }
+
+    // 사료 추가 → feedService에 있는거 쓰기
+
+    // 사료 수정
+    @PutMapping("/modify/{id}")
+    public ResponseEntity<Boolean> modifyFeed(@PathVariable Long id, @RequestBody FeedDto feedDto) {
+        boolean isTrue = adminFeedService.modifyFeed(id, feedDto);
+        return ResponseEntity.ok(isTrue);
+    }
+
 
     // 페이지네이션
     @GetMapping("/list/page")

@@ -1,6 +1,8 @@
 package com.Doggo.DoggoEx.service;
 
+import com.Doggo.DoggoEx.dto.BoardDto;
 import com.Doggo.DoggoEx.dto.FeedDto;
+import com.Doggo.DoggoEx.entity.Board;
 import com.Doggo.DoggoEx.entity.Feed;
 import com.Doggo.DoggoEx.repository.FeedRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,40 @@ public class AdminFeedService {
             feedDtos.add(feedService.convertEntityToDto(feed));
         }
         return feedDtos;
+    }
+
+    // 사료 추가 → feedService에 있는거 쓰기
+
+    // 상세 조회
+    public FeedDto getFeedDetail(Long id) {
+        Feed feed = feedRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("해당 문의가 존재하지 않습니다.")
+        );
+        return feedService.convertEntityToDto(feed);
+    }
+
+    // 사료 수정
+    public boolean modifyFeed(Long id, FeedDto feedDto) {
+        try {
+            Feed feed = feedRepository.findById(id).orElseThrow(
+                    () -> new RuntimeException("해당 사료가 존재하지 않습니다.")
+            );
+            if(feedDto.getFeedName() != null){
+                feed.setFeedName(feedDto.getFeedName());}
+            if(feedDto.getFeedInfo() != null){
+                feed.setFeedInfo(feedDto.getFeedInfo());}
+            if(feedDto.getFeedPrice() != null){
+                feed.setFeedPrice(feedDto.getFeedPrice());}
+            if(feedDto.getFeedType() != null){
+                feed.setFeedType(feedDto.getFeedType());}
+            if(feedDto.getFeedImg() != null){
+                feed.setFeedImg(feedDto.getFeedImg());}
+            feedRepository.save(feed);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     // 페이지네이션
