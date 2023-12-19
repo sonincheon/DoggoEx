@@ -42,13 +42,13 @@ public class WebSecurityConfig implements WebMvcConfigurer {
                 .accessDeniedHandler(jwtAccessDeniedHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/auth/**", "/admin/**","/api/**","/diary/**","/feed/**","/member/**","/pet/**","/post/**","/quest/**","/sale/**").permitAll() //포스트맨 권한
+                .antMatchers("/auth/**", "/admin/**","/api/**","/feed/**","/post/**").permitAll() //포스트맨 권한
                 .antMatchers("/swagger-ui.html", "/v2/api-docs", "/swagger-resources/**", "/webjars/**").permitAll() //스웨거 권한
                 .anyRequest().authenticated()
                 .and()
                 .apply(new JwtSecurityConfig(tokenProvider))
-                .and();
-//                .cors(); // .and().cors() 추가 된 부분
+                .and()
+                .cors(); // .and().cors() 추가 된 부분
 
         return http.build();
     }
