@@ -4,12 +4,14 @@ import com.Doggo.DoggoEx.dto.MemberResDto;
 import com.Doggo.DoggoEx.entity.Member;
 import com.Doggo.DoggoEx.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -40,13 +42,21 @@ public class AdminMemberService {
     }
 
     // 게시글 페이징
-    public List<MemberResDto> getMemberList(int page, int size) {
+    public List<MemberResDto> getMemberList(String memberGrade, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        List<Member> members = memberRepository.findAll(pageable).getContent();
-        List<MemberResDto> memberResDtos = new ArrayList<>();
-        for(Member member : members) {
-            memberResDtos.add(convertEntityToDto(member));
+
+        Page<Member> membersPage;
+
+        if (memberGrade != null && !memberGrade.isEmpty()) {
+            membersPage = memberRepository.findByMemberGrade(memberGrade, pageable);
+        } else {
+            membersPage = memberRepository.findAll(pageable);
         }
+
+        List<MemberResDto> memberResDtos = membersPage.getContent().stream()
+                .map(this::convertEntityToDto)
+                .collect(Collectors.toList());
+
         return memberResDtos;
     }
 
