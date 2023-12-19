@@ -47,16 +47,18 @@ public class BoardService {
         }
         return boardDtos;
     }
-
     // 문의 수정
     public boolean updateBoard(Long boardId, BoardDto boardDto) {
         try {
             Board board = boardRepository.findById(boardId).orElseThrow(
                     () -> new RuntimeException("해당 게시글이 존재하지 않습니다.")
             );
-            board.setBoardType(boardDto.getBoardType());
-            board.setComment(boardDto.getComment());
-            board.setBoardImg(boardDto.getBoardImg());
+            if(boardDto.getBoardType()!=null){
+                board.setBoardType(boardDto.getBoardType());}
+            if(boardDto.getComment()!=null){
+                board.setComment(boardDto.getComment());}
+            if(boardDto.getBoardImg()!=null){
+                board.setBoardImg(boardDto.getBoardImg());}
             boardRepository.save(board);
             return true;
         } catch (Exception e) {

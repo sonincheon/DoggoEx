@@ -37,7 +37,7 @@ public class PostController {
     }
     // 문의 삭제
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Boolean> boardDel(@PathVariable Long id, @RequestBody BoardDto boardDto) {
+    public ResponseEntity<Boolean> boardDel(@PathVariable Long id) {
         boolean isTrue = boardService.deleteBoard(id);
         return ResponseEntity.ok(isTrue);
     }
