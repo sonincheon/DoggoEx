@@ -44,6 +44,7 @@ public class FeedController {
         return ResponseEntity.ok(feedInfo);
     }
 
+
     //사료 판매 완료후 판매수 증가
     @GetMapping("/detail/{id}")
     public ResponseEntity<Boolean> boardDetail(@PathVariable Long id) {

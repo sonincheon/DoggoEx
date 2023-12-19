@@ -67,6 +67,7 @@ public class FeedService {
         return convertEntityToDto(feed);
     }
 
+
     //사료 판매 완료후 판매수 증가
     public boolean cntFeed(Long id) {
         try {
@@ -83,7 +84,7 @@ public class FeedService {
     }
 
     // FEED 엔티티를 DTO로 변환
-    private FeedDto convertEntityToDto(Feed feed) {
+    public FeedDto convertEntityToDto(Feed feed) {
         FeedDto feedDto = new FeedDto();
         feedDto.setFeedId(feed.getId());
         feedDto.setFeedInfo(feed.getFeedInfo());           // 사료정보

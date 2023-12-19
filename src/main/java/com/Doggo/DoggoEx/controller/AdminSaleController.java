@@ -23,7 +23,7 @@ public class AdminSaleController {
     // 송장 번호 입력
     @PutMapping({"/order/{id}"})
     public ResponseEntity<Boolean> invoiceInput(@PathVariable Long id, @RequestBody SaleDto saleDto) {
-        boolean isTrue = adminSaleService.invoiceNum(id, saleDto.getInvoice());
+        boolean isTrue = adminSaleService.invoiceNum(id, saleDto.getOrderStatus(), saleDto.getInvoice());
         return ResponseEntity.ok(isTrue);
     }
 
@@ -38,7 +38,7 @@ public class AdminSaleController {
 
     // 페이지 수 조회
     @GetMapping("/list/count")
-    public ResponseEntity<Integer> movieCount(@RequestParam(defaultValue = "0") int page,
+    public ResponseEntity<Integer> saleCount(@RequestParam(defaultValue = "0") int page,
                                               @RequestParam(defaultValue = "10") int size) {
         PageRequest pageRequest = PageRequest.of(page, size);
         int pageCnt = adminSaleService.getSalePage(pageRequest);

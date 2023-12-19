@@ -32,9 +32,10 @@ public class AdminMemberController {
 
     // 목록 페이징
     @GetMapping("/list/page")
-    public ResponseEntity<List<MemberResDto>> memberList(@RequestParam(defaultValue = "0") int page,
+    public ResponseEntity<List<MemberResDto>> memberList( @RequestParam String grade,
+                                                        @RequestParam(defaultValue = "0") int page,
                                                          @RequestParam(defaultValue = "10") int size) {
-        List<MemberResDto> list = adminMemberService.getMemberList(page, size);
+        List<MemberResDto> list = adminMemberService.getMemberList(grade,page, size);
         return ResponseEntity.ok(list);
     }
 

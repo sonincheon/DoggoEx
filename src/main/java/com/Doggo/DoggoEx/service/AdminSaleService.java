@@ -25,7 +25,7 @@ public class AdminSaleService {
 
     // 송장 입력 (수정하는 형식 가져옴 - 빈 json에 내용을 채워서 저장하는 방식으로?)
 //    @Transactional // 예외 발생시 롤백
-    public boolean invoiceNum(Long id, Integer invoice) {
+    public boolean invoiceNum(Long id, String orderStatus, Integer invoice) {
         try {
             if (invoice == null) {
                 throw new IllegalArgumentException("송장번호는 비워둘 수 없습니다.");
@@ -38,6 +38,7 @@ public class AdminSaleService {
                     () -> new RuntimeException("해당 판매 내역이 존재하지 않습니다.")
             );
             sale.setInvoice(invoice);   // 송장번호를 받음
+            sale.setOrderStatus(orderStatus);
             saleRepository.save(sale);  // 송장번호 "" 에서 변경된거 저장
             return true;
         } catch (IllegalArgumentException e) {
