@@ -1,6 +1,7 @@
 package com.Doggo.DoggoEx.controller;
 
 import com.Doggo.DoggoEx.dto.CatDto;
+import com.Doggo.DoggoEx.repository.CatRepository;
 import com.Doggo.DoggoEx.utils.Views;
 import com.Doggo.DoggoEx.service.CatService;
 import com.Doggo.DoggoEx.service.EngToKorService;
@@ -9,20 +10,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/cats")
 public class CatController {
-
+    private final CatRepository catRepository;
     private final CatService catService;
     private final EngToKorService engToKorService;
 
 
-    public CatController(CatService catService, EngToKorService engToKorService) {
-
+    public CatController(CatRepository catRepository, CatService catService, EngToKorService engToKorService) {
+        this.catRepository = catRepository;
         this.catService = catService;
         this.engToKorService = engToKorService;
     }
@@ -32,6 +31,7 @@ public class CatController {
     @PostMapping("/insert")
    public ResponseEntity<?> catInsert() {
         try {
+            catRepository.deleteAll();
             catService.insertCats();
             return ResponseEntity.ok("애묘도감 테이블 insert");
         } catch (Exception e) {

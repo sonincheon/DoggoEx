@@ -2,6 +2,7 @@ package com.Doggo.DoggoEx.controller;
 
 
 import com.Doggo.DoggoEx.dto.DogDto;
+import com.Doggo.DoggoEx.repository.DogRepository;
 import com.Doggo.DoggoEx.utils.Views;
 import com.Doggo.DoggoEx.service.DogService;
 import com.Doggo.DoggoEx.service.EngToKorService;
@@ -11,18 +12,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/dogs")
 public class DogController {
 
+    private final DogRepository dogRepository;
+
     private final DogService dogService;
     private final EngToKorService engToKorService;
 
-    public DogController(DogService dogService, EngToKorService engToKorService) {
+    public DogController(DogRepository dogRepository, DogService dogService, EngToKorService engToKorService) {
+        this.dogRepository = dogRepository;
         this.dogService = dogService;
         this.engToKorService = engToKorService;
     }
@@ -30,6 +32,7 @@ public class DogController {
     @PostMapping("/insert")
     public ResponseEntity<?> insertDogs() {
         try {
+            dogRepository.deleteAll();
             dogService.insertDogs();
             return ResponseEntity.ok("애견도감 테이블 insert");
         } catch (Exception e) {

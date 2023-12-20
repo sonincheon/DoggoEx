@@ -105,7 +105,7 @@ public class CatService {
     // 묘종 이름으로 검색
     public CatDto getCatByName(String koreanName) {
         // 이름으로 Cat 엔티티를 조회하고, 결과가 없으면 예외 발생
-        Cat cat = catRepository.findByName(koreanName).orElseThrow(
+        Cat cat = catRepository.findByKoreanName(koreanName).orElseThrow(
                 () -> new RuntimeException("해당 묘종이 존재하지 않습니다.")
         );
         // 조회된 Cat 엔티티를 CatDto로 변환하여 반환

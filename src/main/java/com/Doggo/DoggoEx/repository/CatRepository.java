@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CatRepository extends JpaRepository<Cat, Long> {
-    Optional<Cat> findByName(String koreanName);
+    Optional<Cat> findByKoreanName(String koreanName);
     @Query("SELECT new com.Doggo.DoggoEx.dto.CatDto(c.id, c.name, c.koreanName,c.imageLink) FROM Cat c ORDER BY c.koreanName ASC")
     List<CatDto> findAllByOrderByNameAsc(Pageable pageable);
 

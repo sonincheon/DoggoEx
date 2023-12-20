@@ -61,6 +61,8 @@ public class CatDto {
     @JsonProperty("grooming")
     private int grooming;
 
+    @JsonProperty("meowing")
+    private int meowing;
 
     @JsonProperty("intelligence")
     private int intelligence;
@@ -115,15 +117,16 @@ public class CatDto {
                 .imageLink(this.getImageLink())
                 .origin((this.getOrigin()))
                 .length(this.getLength())
-                .intelligence(this.getIntelligence())
-                .familyFriendly(this.getFamilyFriendly())
-                .childrenFriendly(this.getChildrenFriendly())
-                .strangerFriendly(this.getStrangerFriendly())
-                .otherPetsFriendly(this.getOtherPetsFriendly())
-                .shedding(this.getShedding())
-                .grooming(this.getGrooming())
-                .generalHealth(this.getGeneralHealth())
-                .playfulness(this.getPlayfulness())
+                .intelligence(this.getIntelligence() == 0 ? 1 : this.getIntelligence())
+                .familyFriendly(this.getFamilyFriendly() == 0 ? 1 : this.getFamilyFriendly())
+                .childrenFriendly(this.getChildrenFriendly() == 0 ? 1 : this.getChildrenFriendly())
+                .strangerFriendly(this.getStrangerFriendly() == 0 ? 1 : this.getStrangerFriendly())
+                .otherPetsFriendly(this.getOtherPetsFriendly() == 0 ? 1 : this.getOtherPetsFriendly())
+                .shedding(this.getShedding() == 0 ? 1 : this.getShedding())
+                .grooming(this.getGrooming() == 0 ? 1 : this.getGrooming())
+                .meowing(this.getMeowing() == 0 ? 1 : this.getMeowing())
+                .generalHealth(this.getGeneralHealth() == 0 ? 1 : this.getGeneralHealth())
+                .playfulness(this.getPlayfulness() == 0 ? 1 : this.getPlayfulness())
                 .minWeight(this.getMinWeight())
                 .maxWeight(this.getMaxWeight())
                 .minLifeExpectancy(this.getMinLifeExpectancy())

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DogRepository extends JpaRepository<Dog, Long> {
-    Optional<Dog> findByName(String koreanName);
+    Optional<Dog> findByKoreanName(String koreanName);
 
     @Query("SELECT new com.Doggo.DoggoEx.dto.DogDto(d.id, d.name, d.koreanName, d.imageLink) FROM Dog d ORDER BY d.koreanName ASC")
     List<DogDto> findAllByOrderByNameAsc(Pageable pageable);

@@ -1,6 +1,7 @@
 package com.Doggo.DoggoEx.utils;
 
 
+import com.Doggo.DoggoEx.service.DogService;
 import com.Doggo.DoggoEx.service.StrayService;
 import com.Doggo.DoggoEx.service.weather.CompleteWeatherService;
 import com.Doggo.DoggoEx.service.weather.MiddleWeatherService;
@@ -43,19 +44,19 @@ public class Scheduler {
     }
 
 
-    @PostConstruct
-    public void init() {
-        // 서비스 시작 시 한 번 실행할 작업
-        try {
-            executeWeatherTasks();
-            executeStrayTasks();
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            // 다른 예외에 대한 처리
-            e.printStackTrace();
-        }
-    }
+//    @PostConstruct
+//    public void init() {
+//        // 서비스 시작 시 한 번 실행할 작업
+//        try {
+//            executeWeatherTasks();
+//            executeStrayTasks();
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        } catch (Exception e) {
+//            // 다른 예외에 대한 처리
+//            e.printStackTrace();
+//        }
+//    }
     // 초 분 시 일 월 요일
     @Scheduled(cron = "0 0 6 * * ?") // 매일 아침 6시에 실행
     public void executeWeatherTasks() throws JsonProcessingException {
@@ -92,7 +93,7 @@ public class Scheduler {
 
     }
 
-    @Scheduled(cron = "0 0 * * * ?") // 한시간마다 실행
+    @Scheduled(cron = "0 0 6 * * ?") // 한시간마다 실행
     public void executeStrayTasks() throws JsonProcessingException {
         try {
             System.out.println("유기동물 정보 크롤링 요청 시작 ! ! ! ! !");

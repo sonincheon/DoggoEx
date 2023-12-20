@@ -115,7 +115,7 @@ public class DogService {
     // 견종 이름으로 검색
     public DogDto getDogByName(String koreanName) {
         // 이름으로 Dog 엔티티를 조회하고, 결과가 없으면 예외 발생
-        Dog dog = dogRepository.findByName(koreanName).orElseThrow(
+        Dog dog = dogRepository.findByKoreanName(koreanName).orElseThrow(
                 () -> new RuntimeException("해당 견종이 존재하지 않습니다.")
         );
         // 조회된 Dog 엔티티를 DogDto로 변환하여 반환
