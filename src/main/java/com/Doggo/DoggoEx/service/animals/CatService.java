@@ -1,4 +1,4 @@
-package com.Doggo.DoggoEx.service;
+package com.Doggo.DoggoEx.service.animals;
 
 import com.Doggo.DoggoEx.dto.CatDto;
 import com.Doggo.DoggoEx.entity.AnimalType;

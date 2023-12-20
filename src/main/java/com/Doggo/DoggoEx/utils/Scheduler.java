@@ -1,8 +1,7 @@
 package com.Doggo.DoggoEx.utils;
 
 
-import com.Doggo.DoggoEx.service.DogService;
-import com.Doggo.DoggoEx.service.StrayService;
+import com.Doggo.DoggoEx.service.animals.StrayService;
 import com.Doggo.DoggoEx.service.weather.CompleteWeatherService;
 import com.Doggo.DoggoEx.service.weather.MiddleWeatherService;
 import com.Doggo.DoggoEx.service.weather.ShortWeatherService;
@@ -12,7 +11,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.ResourceAccessException;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
 

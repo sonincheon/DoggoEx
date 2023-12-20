@@ -1,7 +1,7 @@
 package com.Doggo.DoggoEx.controller;
 
 import com.Doggo.DoggoEx.dto.StrayDto;
-import com.Doggo.DoggoEx.service.StrayService;
+import com.Doggo.DoggoEx.service.animals.StrayService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
