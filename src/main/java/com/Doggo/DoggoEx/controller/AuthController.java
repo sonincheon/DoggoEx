@@ -23,8 +23,8 @@ public class AuthController {
     private final AuthService authService;
     private final MemberService memberService;
     private final EmailService emailService;
-    private final TokenProvider tokenProvider;
-    private final SecurityUtil securityUtil;
+
+
     //회원가입
     @PostMapping("/signup")
     public ResponseEntity<MemberResDto> signup(@RequestBody MemberReqDto requestDto) {
@@ -62,22 +62,6 @@ public class AuthController {
         String confirm = emailService.sendSimpleMessage(email);
         return confirm;
     }
-
-    //로그인 확인
-    @GetMapping("/isLogin/{token}")
-    public ResponseEntity<Boolean> isLogin(@PathVariable String token) {
-        log.warn("token: {}", token);
-        boolean isTrue = tokenProvider.validateToken(token);
-        return ResponseEntity.ok(isTrue);
-    }
-
-    //토큰값받고 이메일 출력
-    @GetMapping("/takenEmail")
-    public ResponseEntity<String> takenEmail() {
-        String email=memberService.getEmail(securityUtil.getCurrentMemberId());
-        return ResponseEntity.ok(email);
-    }
-
 
 
 }
