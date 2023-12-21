@@ -127,4 +127,8 @@ public class DogService {
         return dogRepository.findAllByOrderByNameAsc(pageable);
     }
 
+    public List<DogDto> getDogsSortedByKeyword(String keyword) {
+        return dogRepository.findByKeyword(keyword);
+    }
+
 }

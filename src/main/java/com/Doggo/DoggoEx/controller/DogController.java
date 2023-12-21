@@ -68,6 +68,19 @@ public class DogController {
         }
 
     }
+
+    @GetMapping("/view/search")
+    @JsonView(Views.Public.class)
+    public ResponseEntity<List<DogDto>> getDogSearchView(@RequestParam String keyword) {
+        try {
+            List<DogDto> dogs = dogService.getDogsSortedByKeyword(keyword);
+            return ResponseEntity.ok(dogs);
+        } catch (Exception e) {
+            // 데이터가 조회되지 않았을때 발생하는 에러를 처리하기 위한 예외처리
+            return ResponseEntity.notFound().build();
+        }
+
+    }
     
 
 
