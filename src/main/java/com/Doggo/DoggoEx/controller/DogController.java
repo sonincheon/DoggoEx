@@ -57,7 +57,7 @@ public class DogController {
     @GetMapping("/view/list")
     @JsonView(Views.Public.class)
     public ResponseEntity<List<DogDto>> getDogSimpleView(@RequestParam(defaultValue = "0") int page,
-                                                         @RequestParam(defaultValue = "8") int size) {
+                                                         @RequestParam(defaultValue = "10") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
             List<DogDto> dogDtos = dogService.getDogsSortedByKoreanName(pageable);

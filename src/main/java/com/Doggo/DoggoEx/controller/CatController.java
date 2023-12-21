@@ -57,7 +57,7 @@ public class CatController {
     @GetMapping("/view/list")
     @JsonView(Views.Public.class)
     public ResponseEntity<List<CatDto>> getCatSimpleView(@RequestParam(defaultValue = "0") int page,
-                                                         @RequestParam(defaultValue = "8") int size) {
+                                                         @RequestParam(defaultValue = "10") int size) {
         try {
             Pageable pageable = PageRequest.of(page, size);
             List<CatDto> catDtos = catService.getCatsSortedByKoreanName(pageable);
