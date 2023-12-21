@@ -1,6 +1,7 @@
 package com.Doggo.DoggoEx.service.animals;
 
 import com.Doggo.DoggoEx.dto.CatDto;
+import com.Doggo.DoggoEx.dto.DogDto;
 import com.Doggo.DoggoEx.entity.AnimalType;
 import com.Doggo.DoggoEx.entity.Cat;
 import com.Doggo.DoggoEx.repository.AnimalTypeRepository;
@@ -114,5 +115,9 @@ public class CatService {
 
     public List<CatDto> getCatsSortedByKoreanName(Pageable pageable) {
         return catRepository.findAllByOrderByNameAsc(pageable);
+    }
+
+    public List<CatDto> getCatsSortedByKeyword(String keyword) {
+        return catRepository.findByKeyword(keyword);
     }
 }

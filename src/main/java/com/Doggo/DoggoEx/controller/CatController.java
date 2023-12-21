@@ -1,11 +1,13 @@
 package com.Doggo.DoggoEx.controller;
 
 import com.Doggo.DoggoEx.dto.CatDto;
+import com.Doggo.DoggoEx.dto.DogDto;
 import com.Doggo.DoggoEx.repository.CatRepository;
 import com.Doggo.DoggoEx.utils.Views;
 import com.Doggo.DoggoEx.service.animals.CatService;
 import com.Doggo.DoggoEx.service.animals.EngToKorService;
 import com.fasterxml.jackson.annotation.JsonView;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -54,10 +56,25 @@ public class CatController {
 
     @GetMapping("/view/list")
     @JsonView(Views.Public.class)
-    public ResponseEntity<List<CatDto>> getCatSimpleView(Pageable pageable) {
+    public ResponseEntity<List<CatDto>> getCatSimpleView(@RequestParam(defaultValue = "0") int page,
+                                                         @RequestParam(defaultValue = "8") int size) {
         try {
+            Pageable pageable = PageRequest.of(page, size);
             List<CatDto> catDtos = catService.getCatsSortedByKoreanName(pageable);
             return ResponseEntity.ok(catDtos);
+        } catch (Exception e) {
+            // 데이터가 조회되지 않았을때 발생하는 에러를 처리하기 위한 예외처리
+            return ResponseEntity.notFound().build();
+        }
+
+    }
+
+    @GetMapping("/view/search")
+    @JsonView(Views.Public.class)
+    public ResponseEntity<List<CatDto>> getCatSearchView(@RequestParam String keyword) {
+        try {
+            List<CatDto> cats = catService.getCatsSortedByKeyword(keyword);
+            return ResponseEntity.ok(cats);
         } catch (Exception e) {
             // 데이터가 조회되지 않았을때 발생하는 에러를 처리하기 위한 예외처리
             return ResponseEntity.notFound().build();
