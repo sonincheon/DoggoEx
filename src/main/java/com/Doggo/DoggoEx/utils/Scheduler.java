@@ -55,6 +55,8 @@ public class Scheduler {
 //            e.printStackTrace();
 //        }
 //    }
+
+
     // 초 분 시 일 월 요일
     @Scheduled(cron = "0 0 6 * * ?") // 매일 아침 6시에 실행
     public void executeWeatherTasks() throws JsonProcessingException {
