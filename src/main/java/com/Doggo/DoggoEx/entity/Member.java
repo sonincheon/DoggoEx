@@ -43,7 +43,6 @@ public class Member {
     private List<PetProfile> petProfiles;
     @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
     private List<Board> board;
-
     @Enumerated(EnumType.STRING)
     private Authority authority;
 

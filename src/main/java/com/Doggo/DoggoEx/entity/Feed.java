@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "feed")
@@ -32,5 +33,7 @@ public class Feed {
     private FeedType feedType;  // 사료타입 개/고양이
     @Column(name = "feed_subscribe",nullable = false)
     private Integer feedSubscribe;   // 판매수
+    @OneToMany(mappedBy = "feed",cascade = CascadeType.ALL)
+    private List<Sale> sale ;
 
 }
