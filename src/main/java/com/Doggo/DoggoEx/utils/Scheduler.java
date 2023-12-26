@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.ResourceAccessException;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +48,7 @@ public class Scheduler {
 //        // 서비스 시작 시 한 번 실행할 작업
 //        try {
 //            executeWeatherTasks();
-//            executeStrayTasks();
+////            executeStrayTasks();
 //        } catch (JsonProcessingException e) {
 //            e.printStackTrace();
 //        } catch (Exception e) {

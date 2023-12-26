@@ -8,16 +8,23 @@ import java.util.*;
 @Service
 public class CompleteWeatherService {
     public Map<String, List<List<String>>> getCompleteWeather(Map<String, List<List<String>>> completeShort, Map<String, List<List<String>>> completeMiddle) {
-        Map<String, List<List<String>>> completeWeather = new HashMap<>();
+        try {
+            System.out.println("완전한 날씨 데이터 취합 시작");
+            Map<String, List<List<String>>> completeWeather = new HashMap<>();
 
-        // completeShort와 completeMiddle의 데이터 병합 // :: 구문은 메소드 참조 ~~
-        completeShort.forEach((key, value) -> completeWeather.merge(key, value, this::mergeLists));
-        completeMiddle.forEach((key, value) -> completeWeather.merge(key, value, this::mergeLists));
+            // completeShort와 completeMiddle의 데이터 병합
+            completeShort.forEach((key, value) -> completeWeather.merge(key, value, this::mergeLists));
+            completeMiddle.forEach((key, value) -> completeWeather.merge(key, value, this::mergeLists));
 
-        // 날짜별로 데이터 정렬
-        sortWeatherData(completeWeather);
+            // 날짜별로 데이터 정렬
+            sortWeatherData(completeWeather);
 
-        return completeWeather;
+            return completeWeather;
+        } catch (Exception e) {
+            System.out.println("완전한 날씨 데이터 취합 실패: " + e.getMessage());
+            e.printStackTrace();
+            return Collections.emptyMap();
+        }
     }
 
     // 중복된 날짜 데이터를 제거하고 두 리스트를 병합하는 메서드
