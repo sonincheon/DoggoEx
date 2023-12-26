@@ -43,6 +43,14 @@ public class AuthController {
         return ResponseEntity.ok(!isTrue);
     }
 
+    //비밀번호 변경
+    @PostMapping("/change/{email}")
+    public ResponseEntity<Boolean> passwordChange(@PathVariable String email ,@RequestBody String password) {
+        log.info("email: {}", email);
+        boolean isTrue = authService.passwordChange(email,password);
+        return ResponseEntity.ok(isTrue);
+    }
+
     @GetMapping("/findId")
     public ResponseEntity<String> findId(@RequestParam String name, @RequestParam String tel) {
         String memberEmail = authService.findId(name, tel);
