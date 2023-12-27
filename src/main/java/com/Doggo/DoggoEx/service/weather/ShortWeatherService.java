@@ -41,7 +41,7 @@ public class ShortWeatherService extends WeatherAbstract {
                     for (CityEnum city : CityEnum.values()) {
                         if (city.name().equals(regName)) {
                             locationCode.put(regName, regId);
-                            System.out.println(regName + " : " + regId);
+//                            System.out.println(regName + " : " + regId);
                             break;
                         }
                     }
@@ -69,10 +69,13 @@ public class ShortWeatherService extends WeatherAbstract {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
 
             System.out.println("단기예보 취합 시작");
-
+//            System.out.println(locationCode);
             for (Map.Entry<String, String> entry : locationCode.entrySet()) {
                 String cityName = entry.getKey();
                 String regCode = entry.getValue();
+
+//                System.out.println(cityName + " : " + regCode);
+
 
                 Map<String, String> queryParams = shortQueryParams(regCode, shortDateParams);
                 String response = sendGetRequest(weatherShortDays, queryParams, headers);
@@ -81,6 +84,7 @@ public class ShortWeatherService extends WeatherAbstract {
 
                 for (String line : lines) {
                     if (!line.contains("#") && !line.contains("-99")) {
+
                         filteredLines.add(line);
                     }
                 }
@@ -89,6 +93,7 @@ public class ShortWeatherService extends WeatherAbstract {
                 Map<String, List<String>> afternoonData = new LinkedHashMap<>();
 
                 for (String line : filteredLines) {
+//                    System.out.println(line);
                     List<String> fields = parseLine(line);
                     if (!fields.isEmpty()) {
                         String dateStr = fields.get(2).substring(0, 8);
@@ -106,6 +111,7 @@ public class ShortWeatherService extends WeatherAbstract {
 
                 List<List<String>> cityWeather = new ArrayList<>();
                 for (String date : morningData.keySet()) {
+//                    System.out.println(date);
                     List<String> combinedWeather = new ArrayList<>();
                     combinedWeather.add(date);
                     combinedWeather.addAll(morningData.get(date));

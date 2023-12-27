@@ -29,6 +29,7 @@ public class WeatherDataSaveService {
     @Transactional
     public void saveWeatherData(Map<String, List<List<String>>> weatherData) {
         try {
+            System.out.println("단기 + 중기 예보 insert 시작");
             int count = 0;
             for (Map.Entry<String, List<List<String>>> entry : weatherData.entrySet()) {
                 for (List<String> data : entry.getValue()) {

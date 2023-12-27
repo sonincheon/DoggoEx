@@ -15,6 +15,9 @@ import java.util.Map;
 @Service
 public abstract class WeatherAbstract {
 
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHH");
+
     protected RestTemplate restTemplate;
 
     public WeatherAbstract() {
@@ -33,23 +36,31 @@ public abstract class WeatherAbstract {
         queryParams.forEach(builder::queryParam);
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
-        ResponseEntity<String> response = restTemplate.exchange(
-                builder.toUriString(), HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> response;
+
+        try {
+            response = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, entity, String.class);
+        } catch (Exception e) {
+            // 예외 처리 로직
+            // 예: 로그 기록, 기본값 반환 등
+            return "Error: " + e.getMessage();
+        }
 
         return response.getBody();
     }
 
+    // 날짜 형식 변환 메소드
+    private int formatDate(LocalDateTime dateTime) {
+        return Integer.parseInt(dateTime.format(DATE_TIME_FORMATTER));
+    }
+
     protected Map<String, Integer> middleDaysParam() {
         LocalDate now = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-        int today = Integer.parseInt(now.format(formatter));
-        int tomorrow = today + 1;
-        int sevenDaysAfter = today + 6;
 
         Map<String, Integer> dateParams = new HashMap<>();
-        dateParams.put("today", today);
-        dateParams.put("tomorrow", tomorrow);
-        dateParams.put("sevenDaysAfter", sevenDaysAfter);
+        dateParams.put("today", formatDate(LocalDateTime.of(now, LocalTime.MIDNIGHT)));
+        dateParams.put("tomorrow", formatDate(LocalDateTime.of(now.plusDays(1), LocalTime.MIDNIGHT)));
+        dateParams.put("sevenDaysAfter", formatDate(LocalDateTime.of(now.plusDays(7), LocalTime.MIDNIGHT)));
 
         return dateParams;
     }
@@ -62,31 +73,17 @@ public abstract class WeatherAbstract {
         queryParams.put("help", "0");
 
         return queryParams;
-
     }
+
     protected Map<String, Integer> shortDaysParam() {
         LocalDate today = LocalDate.now();
 
-        // 어제 날짜 계산하기
-        LocalDate yesterday = today.minusDays(1);
-
-        // 오후 12시 시간 설정하기
-        LocalTime noon = LocalTime.of(12, 0);
-
-        LocalDateTime todayNoon = LocalDateTime.of(today, noon);
-
-        // 어제 날짜와 오후 12시를 결합하여 LocalDateTime 객체 생성
-        LocalDateTime yesterdayNoon = LocalDateTime.of(yesterday, noon);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHH");
-
-        int intYesterdayNoon = Integer.parseInt(yesterdayNoon.format(formatter));
-
-        int intTodayNoon = Integer.parseInt(todayNoon.format(formatter));
+        LocalDateTime yesterdayNoon = LocalDateTime.of(today.minusDays(1), LocalTime.of(12, 0));
+        LocalDateTime todayNoon = LocalDateTime.of(today, LocalTime.of(12, 0));
 
         Map<String, Integer> shortDateParams = new HashMap<>();
-        shortDateParams.put("today", intYesterdayNoon);
-        shortDateParams.put("2DaysAfter", intTodayNoon);
+        shortDateParams.put("today", formatDate(yesterdayNoon));
+        shortDateParams.put("2DaysAfter", formatDate(todayNoon));
 
         return shortDateParams;
     }
@@ -99,6 +96,5 @@ public abstract class WeatherAbstract {
         queryParams.put("help", "0");
 
         return queryParams;
-
     }
 }

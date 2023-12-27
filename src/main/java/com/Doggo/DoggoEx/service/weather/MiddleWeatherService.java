@@ -60,6 +60,8 @@ public class MiddleWeatherService extends WeatherAbstract {
                 String cityName = entry.getKey();
                 String regCode = entry.getValue();
 
+//                System.out.println(cityName + " : " + regCode);
+
                 Map<String, String> queryParams = middleQueryParams(regCode, dateParams);
                 String response = sendGetRequest(temperature7daysUrl, queryParams, headers);
                 String[] lines = response.split("\n");

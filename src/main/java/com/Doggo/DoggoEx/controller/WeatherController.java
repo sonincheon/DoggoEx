@@ -46,6 +46,7 @@ public class WeatherController {
     @PostMapping("/insert")
     public ResponseEntity<?> insertForcasts() {
         try {
+            long startTime = System.currentTimeMillis();
             // 지역별 코드
             Map<String, String> locationCode = shortWeatherService.getLocationCode();
 
@@ -63,8 +64,14 @@ public class WeatherController {
             // 각 도시별 일주일 날씨 정보 db에 insert
             weatherDataSaveService.saveWeatherData(completeWeather);
 
+            long endTime = System.currentTimeMillis();
+            long duration = (endTime - startTime) / 1000;
+
+            System.out.println("Duration: " + duration + " seconds");
+
             return ResponseEntity.ok(completeWeather);
         } catch (Exception e) {
+
             return ResponseEntity.notFound().build();
         }
     }
