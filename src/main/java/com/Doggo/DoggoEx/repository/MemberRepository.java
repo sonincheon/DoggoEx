@@ -16,6 +16,7 @@ public interface MemberRepository extends JpaRepository <Member, Long> {
     Optional<Member> findByMemberNameAndMemberTel(String Name, String Tel);
 
     void deleteByMemberEmail(String email);
-    Page<Member> findByMemberGrade(String memberGrade, Pageable pageable);
     Optional<Member> findByMemberEmailAndMemberPassword(String email, String password);
+
+    Page<Member> findByMemberGradeContaining(String filter, Pageable pageable);
 }

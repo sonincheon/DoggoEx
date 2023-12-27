@@ -1,6 +1,8 @@
 package com.Doggo.DoggoEx.service;
 
+import com.Doggo.DoggoEx.dto.FeedDto;
 import com.Doggo.DoggoEx.dto.MemberResDto;
+import com.Doggo.DoggoEx.entity.Feed;
 import com.Doggo.DoggoEx.entity.Member;
 import com.Doggo.DoggoEx.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -41,23 +43,36 @@ public class AdminMemberService {
         }
     }
 
-    // 게시글 페이징
-    public List<MemberResDto> getMemberList(String memberGrade, int page, int size) {
+    // 회원 페이지네이션
+    public List<MemberResDto> getMemberList(int page, int size, String filter) {
         Pageable pageable = PageRequest.of(page, size);
 
-        Page<Member> membersPage;
-
-        if (memberGrade != null && !memberGrade.isEmpty()) {
-            membersPage = memberRepository.findByMemberGrade(memberGrade, pageable);
+        Page<Member> memberPage;
+        if ("all".equals(filter) || filter == null || filter.isEmpty()){
+            // 필터가 "all"이거나 비어있는 경우 모든 데이터를 가져옴
+            memberPage = memberRepository.findAll(pageable);
         } else {
-            membersPage = memberRepository.findAll(pageable);
+            // 특정 필터 조건에 맞는 데이터를 가져옴 (부분 일치 검색)
+            memberPage = memberRepository.findByMemberGradeContaining(filter, pageable);
+        }
+        List<Member> members = memberPage.getContent();
+        List<MemberResDto> memberResDtos = new ArrayList<>();
+        for(Member member : members) {
+            memberResDtos.add(convertEntityToDto(member));
+        }
+        return memberResDtos;
+    }
+
+    // 페이지 수 조회
+    public int getMembers(Pageable pageable, String filter) {
+        Page<Member> memberPage;
+        if ("all".equals(filter) || filter == null || filter.isEmpty()) {
+            memberPage = memberRepository.findAll(pageable);
+        } else {
+            memberPage = memberRepository.findByMemberGradeContaining(filter, pageable);
         }
 
-        List<MemberResDto> memberResDtos = membersPage.getContent().stream()
-                .map(this::convertEntityToDto)
-                .collect(Collectors.toList());
-
-        return memberResDtos;
+        return memberPage.getTotalPages();
     }
 
     // member entity → Dto
@@ -74,9 +89,5 @@ public class AdminMemberService {
         memberResDto.setRegDate(member.getRegDate());
         memberResDto.setMemberGrade(member.getMemberGrade());
         return memberResDto;
-    }
-    // 페이지 수 조회
-    public int getMembers(Pageable pageable) {
-        return memberRepository.findAll(pageable).getTotalPages();
     }
 }

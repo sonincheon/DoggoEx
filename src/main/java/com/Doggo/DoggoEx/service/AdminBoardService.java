@@ -5,6 +5,7 @@ import com.Doggo.DoggoEx.entity.Board;
 import com.Doggo.DoggoEx.entity.Sale;
 import com.Doggo.DoggoEx.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -44,9 +45,16 @@ public class AdminBoardService {
     }
 
     // 페이지네이션
-    public List<BoardDto> getBoardList(int page, int size) {
+    public List<BoardDto> getBoardList(int page, int size, String filter) {
         Pageable pageable = PageRequest.of(page, size);
-        List<Board> boards = boardRepository.findAll(pageable).getContent();
+
+        Page<Board> boardPage;
+        if ("all".equals(filter) || filter == null || filter.isEmpty()) {
+            boardPage = boardRepository.findAll(pageable);
+        } else {
+            boardPage = boardRepository.findByAnswerContaining(filter, pageable);
+        }
+        List<Board> boards = boardPage.getContent();
         List<BoardDto> boardDtos = new ArrayList<>();
         for (Board board : boards) {
             boardDtos.add(boardService.convertEntityToDto(board));
@@ -55,7 +63,14 @@ public class AdminBoardService {
     }
 
     // 페이지 수 조회
-    public int getBoardPage(Pageable pageable) {
-        return boardRepository.findAll(pageable).getTotalPages();
+    public int getBoardPage(Pageable pageable, String filter) {
+        Page<Board> boardPage;
+        if ("all".equals(filter) || filter == null || filter.isEmpty()) {
+            boardPage = boardRepository.findAll(pageable);
+        } else {
+            boardPage = boardRepository.findByAnswerContaining(filter, pageable);
+        }
+
+        return boardPage.getTotalPages();
     }
 }

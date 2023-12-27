@@ -30,21 +30,22 @@ public class AdminMemberController {
         return ResponseEntity.ok(isTrue);
     }
 
-    // 목록 페이징
+    // 페이지네이션
     @GetMapping("/list/page")
-    public ResponseEntity<List<MemberResDto>> memberList( @RequestParam String grade,
-                                                        @RequestParam(defaultValue = "0") int page,
-                                                         @RequestParam(defaultValue = "10") int size) {
-        List<MemberResDto> list = adminMemberService.getMemberList(grade,page, size);
+    public ResponseEntity<List<MemberResDto>> memberList(@RequestParam(defaultValue = "0") int page,
+                                                         @RequestParam(defaultValue = "10") int size,
+                                                         @RequestParam String filter) {
+        List<MemberResDto> list = adminMemberService.getMemberList(page, size, filter);
         return ResponseEntity.ok(list);
     }
 
     // 페이지 수 조회
-    @GetMapping("/count")
+    @GetMapping("/list/count")
     public ResponseEntity<Integer> listMembers(@RequestParam(defaultValue = "0") int page,
-                                               @RequestParam(defaultValue = "10") int size) {
+                                               @RequestParam(defaultValue = "10") int size,
+                                               @RequestParam String filter) {
         PageRequest pageRequest = PageRequest.of(page, size);
-        Integer pageCnt = adminMemberService.getMembers(pageRequest);
+        int pageCnt = adminMemberService.getMembers(pageRequest, filter);
         return ResponseEntity.ok(pageCnt);
     }
 }

@@ -35,8 +35,9 @@ public class AdminBoardController {
     // 페이지네이션
     @GetMapping("/list/page")
     public ResponseEntity<List<BoardDto>> boardList(@RequestParam(defaultValue = "0") int page,
-                                                    @RequestParam(defaultValue = "10") int size) {
-        List<BoardDto> list = adminBoardService.getBoardList(page, size);
+                                                    @RequestParam(defaultValue = "10") int size,
+                                                    @RequestParam String filter) {
+        List<BoardDto> list = adminBoardService.getBoardList(page, size, filter);
         log.info("list : {}", list);
         return ResponseEntity.ok(list);
     }
@@ -44,9 +45,10 @@ public class AdminBoardController {
     // 페이지 수 조회
     @GetMapping("/list/count")
     public ResponseEntity<Integer> boardCount(@RequestParam(defaultValue = "0") int page,
-                                              @RequestParam(defaultValue = "10") int size) {
+                                              @RequestParam(defaultValue = "10") int size,
+                                              @RequestParam String filter) {
         PageRequest pageRequest = PageRequest.of(page, size);
-        int pageCnt = adminBoardService.getBoardPage(pageRequest);
+        int pageCnt = adminBoardService.getBoardPage(pageRequest, filter);
         return ResponseEntity.ok(pageCnt);
     }
 }

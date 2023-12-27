@@ -30,8 +30,9 @@ public class AdminSaleController {
     // 페이지네이션
     @GetMapping("/list/page")
     public ResponseEntity<List<SaleDto>> saleList(@RequestParam(defaultValue = "0") int page,
-                                                  @RequestParam(defaultValue = "10") int size) {
-        List<SaleDto> list = adminSaleService.getSaleList(page, size);
+                                                  @RequestParam(defaultValue = "10") int size,
+                                                  @RequestParam String filter) {
+        List<SaleDto> list = adminSaleService.getSaleList(page, size, filter);
         log.info("list : {}", list);
         return ResponseEntity.ok(list);
     }
@@ -39,9 +40,10 @@ public class AdminSaleController {
     // 페이지 수 조회
     @GetMapping("/list/count")
     public ResponseEntity<Integer> saleCount(@RequestParam(defaultValue = "0") int page,
-                                              @RequestParam(defaultValue = "10") int size) {
+                                             @RequestParam(defaultValue = "10") int size,
+                                             @RequestParam String filter) {
         PageRequest pageRequest = PageRequest.of(page, size);
-        int pageCnt = adminSaleService.getSalePage(pageRequest);
+        int pageCnt = adminSaleService.getSalePage(pageRequest, filter);
         return ResponseEntity.ok(pageCnt);
     }
 

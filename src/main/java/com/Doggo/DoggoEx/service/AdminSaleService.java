@@ -1,18 +1,16 @@
 package com.Doggo.DoggoEx.service;
 
-import com.Doggo.DoggoEx.dto.MemberReqDto;
 import com.Doggo.DoggoEx.dto.SaleDto;
 import com.Doggo.DoggoEx.entity.Sale;
 import com.Doggo.DoggoEx.repository.SaleRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -47,9 +45,18 @@ public class AdminSaleService {
         }
     }
     // 페이지네이션
-    public List<SaleDto> getSaleList(int page, int size) {
+    public List<SaleDto> getSaleList(int page, int size, String filter) {
         Pageable pageable = PageRequest.of(page, size);
-        List<Sale> sales = saleRepository.findAll(pageable).getContent();
+
+        Page<Sale> salesPage;
+        if ("all".equals(filter) || filter == null || filter.isEmpty()) {
+            // 필터가 "all"이거나 비어있는 경우 모든 데이터를 가져옴
+            salesPage = saleRepository.findAll(pageable);
+        } else {
+            // 특정 필터 조건에 맞는 데이터를 가져옴 (부분 일치 검색)
+            salesPage = saleRepository.findByOrderStatusContaining(filter, pageable);
+        }
+        List<Sale> sales = salesPage.getContent();
         List<SaleDto> saleDtos = new ArrayList<>();
         for(Sale sale : sales) {
             saleDtos.add(saleService.convertEntityToDto(sale));
@@ -58,9 +65,14 @@ public class AdminSaleService {
     }
 
     // 페이지 수 계산
-    public int getSalePage(Pageable pageable) {
-        return saleRepository.findAll(pageable).getTotalPages();
+    public int getSalePage(Pageable pageable, String filter) {
+        Page<Sale> salesPage;
+        if ("all".equals(filter) || filter == null || filter.isEmpty()) {
+            salesPage = saleRepository.findAll(pageable);
+        } else {
+            salesPage = saleRepository.findByOrderStatusContaining(filter, pageable);
+        }
+
+        return salesPage.getTotalPages();
     }
-
-
 }
