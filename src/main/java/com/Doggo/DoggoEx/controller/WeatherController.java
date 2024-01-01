@@ -51,25 +51,25 @@ public class WeatherController {
             Map<String, String> locationCode = shortWeatherService.getLocationCode();
 
             // 단기예보
-            Map<String, List<List<String>>> completeShort = shortWeatherService.completeShort(locationCode);
+//            Map<String, List<List<String>>> completeShort = shortWeatherService.completeShort(locationCode);
 
             // 중기예보
             Map<String, List<List<String>>> middleTemp = middleWeatherService.getMiddleTemp(locationCode);
             Map<String, List<List<String>>> middleCondition = middleWeatherService.getMiddleCondition(locationCode);
             Map<String, List<List<String>>> completeMiddle = middleWeatherService.getCompleteMiddle(middleTemp,middleCondition);
-
-            // 단기예보 + 중기예보
-            Map<String, List<List<String>>> completeWeather = completeWeatherService.getCompleteWeather(completeShort, completeMiddle);
-            weatherDataSaveService.deleteAllWeatherData();
-            // 각 도시별 일주일 날씨 정보 db에 insert
-            weatherDataSaveService.saveWeatherData(completeWeather);
+//
+//            // 단기예보 + 중기예보
+//            Map<String, List<List<String>>> completeWeather = completeWeatherService.getCompleteWeather(completeShort, completeMiddle);
+//            weatherDataSaveService.deleteAllWeatherData();
+//            // 각 도시별 일주일 날씨 정보 db에 insert
+//            weatherDataSaveService.saveWeatherData(completeWeather);
 
             long endTime = System.currentTimeMillis();
             long duration = (endTime - startTime) / 1000;
 
             System.out.println("Duration: " + duration + " seconds");
 
-            return ResponseEntity.ok(completeWeather);
+            return ResponseEntity.ok(completeMiddle);
         } catch (Exception e) {
 
             return ResponseEntity.notFound().build();

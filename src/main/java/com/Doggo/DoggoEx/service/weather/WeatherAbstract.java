@@ -60,7 +60,9 @@ public abstract class WeatherAbstract {
         Map<String, Integer> dateParams = new HashMap<>();
         dateParams.put("today", formatDate(LocalDateTime.of(now, LocalTime.MIDNIGHT)));
         dateParams.put("tomorrow", formatDate(LocalDateTime.of(now.plusDays(1), LocalTime.MIDNIGHT)));
+//        System.out.println(formatDate(LocalDateTime.of(now.plusDays(1), LocalTime.MIDNIGHT)));
         dateParams.put("sevenDaysAfter", formatDate(LocalDateTime.of(now.plusDays(7), LocalTime.MIDNIGHT)));
+//        System.out.println(formatDate(LocalDateTime.of(now.plusDays(7), LocalTime.MIDNIGHT)));
 
         return dateParams;
     }
@@ -84,7 +86,7 @@ public abstract class WeatherAbstract {
         Map<String, Integer> shortDateParams = new HashMap<>();
         shortDateParams.put("today", formatDate(yesterdayNoon));
         shortDateParams.put("2DaysAfter", formatDate(todayNoon));
-
+        System.out.println("오늘  : " + formatDate(yesterdayNoon) + "이틀 뒤 : " + formatDate(todayNoon));
         return shortDateParams;
     }
 
