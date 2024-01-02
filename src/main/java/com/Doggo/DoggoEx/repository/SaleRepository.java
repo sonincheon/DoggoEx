@@ -15,5 +15,4 @@ import java.util.List;
 public interface SaleRepository extends JpaRepository <Sale, Long> {
     List<Sale> findByMemberMemberEmail(String email);
     Page<Sale> findByOrderStatusContaining(String filter, Pageable pageable);
-    Page<Member> findByOrderStatusIsNull(Pageable pageable);
 }
