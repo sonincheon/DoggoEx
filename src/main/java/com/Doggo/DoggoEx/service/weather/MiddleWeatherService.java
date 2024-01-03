@@ -68,11 +68,11 @@ public class MiddleWeatherService extends WeatherAbstract {
                 String cityName = entry.getKey();
                 String regCode = entry.getValue();
 
-                System.out.println(cityName + " : " + regCode);
+//                System.out.println(cityName + " : " + regCode);
 
                 Map<String, String> queryParams = middleQueryParams(regCode, dateParams);
                 String response = sendGetRequest(temperature7daysUrl, queryParams, headers);
-                System.out.println(response);
+//                System.out.println(response);
                 String[] lines = response.split("\n");
                 String[] filterLines = Arrays.copyOfRange(lines, 2, lines.length - 1);
 
@@ -93,7 +93,7 @@ public class MiddleWeatherService extends WeatherAbstract {
                     cityWeather.add(dailyTemp);
                 }
                 middleTemp.put(cityName, cityWeather);
-                System.out.println(middleTemp.get(cityName));
+//                System.out.println(middleTemp.get(cityName));
 
             }
             System.out.println("중기예보 온도 성공");
@@ -161,7 +161,7 @@ public class MiddleWeatherService extends WeatherAbstract {
                     regionCondition.add(dailyCondition);
                 }
                 middleCondition.put(region.name(), regionCondition);
-                System.out.println(middleCondition.get(region.name()));
+//                System.out.println(middleCondition.get(region.name()));
             }
             System.out.println("중기예보 날씨 성공");
             return middleCondition;
