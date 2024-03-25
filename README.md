@@ -1,6 +1,6 @@
 
 ## AWS 배포 사이트 : https://www.petmemoir.store/
-초기 기획안 : https://www.notion.so/8f705f3c79f34820bff746188d1c6e8d
+
 ---
 ## 손인천 담당 기능 요약 ##
 
@@ -110,5 +110,11 @@
    유지보수성이 저해되는게 확인되어 Builder 패턴, ObjectMapper, Jackson   
    어노테이션들을 적극적으로 사용하여 팀원들에게 전파하였음
  - 반복된 API요청 로직(날짜관련)을 추상화 클래스로 리팩토링하여 코드를 줄임
+
+확인사항
+멍냥멍냥 프론트엔드(https://github.com/sonincheon/Doggo-frontend)
+멍냥멍냥 백엔드(https://github.com/sonincheon/DoggoEx)
+멍냥멍냥 플라스크(https://github.com/sonincheon/DoggoFlask)
+멍냥멍냥 통합(https://github.com/sonincheon/DoggoTotals)
 
 인사담당관님의 피드백을 환영합니다!
