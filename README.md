@@ -1,5 +1,5 @@
 
-## AWS 배포 사이트 : https://www.petmemoir.store/ ##
+## AWS 배포 사이트 : https://www.petmemoir.store/
 초기 기획안 : https://www.notion.so/8f705f3c79f34820bff746188d1c6e8d
 ---
 ## 손인천 담당 기능 요약 ##
