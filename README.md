@@ -53,7 +53,9 @@
   - 하단 탭바를 REACT-NATIVE를 사용, 웹뷰를 이용하여 기능을 구현하고 EXPO로
     빌드하여 EXPO GO 앱으로 실시간 확인및 구글 콘솔 테스트 및 평가 진행
   - 배포 사이트 : https://www.petmemoir.store/
+
     내 블로그 (배포) : https://cheonsdev.tistory.com/3
+    
     내 블로그 (EXPO) : https://cheonsdev.tistory.com/12
 
 6. 리더로서의 역할
@@ -113,8 +115,11 @@
 
 확인사항
 멍냥멍냥 프론트엔드(https://github.com/sonincheon/Doggo-frontend)
+
 멍냥멍냥 백엔드(https://github.com/sonincheon/DoggoEx)
+
 멍냥멍냥 플라스크(https://github.com/sonincheon/DoggoFlask)
+
 멍냥멍냥 통합(https://github.com/sonincheon/DoggoTotals)
 
 인사담당관님의 피드백을 환영합니다!
